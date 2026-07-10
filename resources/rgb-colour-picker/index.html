@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RGB Colour Picker — Kirill Zeynalov</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+
+    <nav class="nav-left">
+      <a href="/audio/">Audio</a>
+      <a href="/video/">Video</a>
+      <a href="/visuals/">Visuals</a>
+    </nav>
+
+    <div class="logo-wrap">
+      <a href="https://www.kirillzeynalov.com/">
+        <img
+          src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/00-misc/KZ%20-%20Logotype%20-%20Large.png"
+          alt="Kirill Zeynalov"
+          onerror="this.style.display='none'"
+        >
+      </a>
+    </div>
+
+    <nav class="nav-right">
+      <a href="/blog/">Blog</a>
+      <a href="/resources/">Resources</a>
+      <a href="/about/">About</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-backdrop" id="menuBackdrop"></div>
+  <div class="mobile-menu-panel">
+    <nav class="mobile-menu-links">
+      <a href="/audio/"><span class="link-dot"></span>Audio</a>
+      <a href="/video/"><span class="link-dot"></span>Video</a>
+      <a href="/visuals/"><span class="link-dot"></span>Visuals</a>
+      <a href="/blog/"><span class="link-dot"></span>Blog</a>
+      <a href="/resources/"><span class="link-dot"></span>Resources</a>
+      <a href="/about/"><span class="link-dot"></span>About</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ══ HERO BANNER ══ -->
+<!-- SWAP IMAGE: replace the src below with any image URL you want -->
+<section class="hero">
+  <img
+    class="hero-bg"
+    src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/resources/online-tools/02%20-%20RGB%20Colour%20Picker.jpg"
+    alt="RGB Colour Picker"
+  >
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <div class="hero-rule"></div>
+    <span class="hero-label">RGB Colour Picker</span>
+  </div>
+</section>
+
+<!-- ══ MAIN ══ -->
+<main>
+
+  <p class="intro-text">
+    RGB Colour Picker is a versatile tool for exploring and converting colours. Select a colour to instantly display its HEX, RGB, CMYK, HSV, and HSL values. Entering a value in any field automatically generates the corresponding equivalents in all other formats, along with the exact point on the colour field.
+  </p>
+
+  <!-- ══ TOOL ══ -->
+  <div class="tool-card" role="region" aria-label="RGB colour picker">
+
+    <!-- Colour canvas -->
+    <div class="color-canvas-wrap">
+      <canvas id="color-canvas"></canvas>
+    </div>
+
+    <!-- Hue slider -->
+    <div class="hue-wrap">
+      <canvas id="hue-canvas"></canvas>
+    </div>
+
+    <div class="tool-divider"></div>
+
+    <!-- HEX -->
+    <div class="field-row">
+      <label class="field-label" for="hex">HEX</label>
+      <div style="position:relative;">
+        <input id="hex" class="field" type="text" aria-label="HEX value" spellcheck="false" autocomplete="off">
+        <button class="copy-btn" data-target="hex">Copy</button>
+      </div>
+    </div>
+
+    <!-- RGB + CMYK -->
+    <div class="row">
+      <div class="col">
+        <div class="field-row">
+          <label class="field-label" for="rgb">RGB</label>
+          <div style="position:relative;">
+            <input id="rgb" class="field" type="text" aria-label="RGB value" spellcheck="false" autocomplete="off">
+            <button class="copy-btn" data-target="rgb">Copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="field-row">
+          <label class="field-label" for="cmyk">CMYK</label>
+          <div style="position:relative;">
+            <input id="cmyk" class="field" type="text" aria-label="CMYK value" spellcheck="false" autocomplete="off">
+            <button class="copy-btn" data-target="cmyk">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HSV + HSL -->
+    <div class="row">
+      <div class="col">
+        <div class="field-row">
+          <label class="field-label" for="hsv">HSV</label>
+          <div style="position:relative;">
+            <input id="hsv" class="field" type="text" aria-label="HSV value" spellcheck="false" autocomplete="off">
+            <button class="copy-btn" data-target="hsv">Copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="field-row">
+          <label class="field-label" for="hsl">HSL</label>
+          <div style="position:relative;">
+            <input id="hsl" class="field" type="text" aria-label="HSL value" spellcheck="false" autocomplete="off">
+            <button class="copy-btn" data-target="hsl">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="reset-button" type="button">Reset</button>
+
+  </div>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+
+  <div class="footer-social">
+    <a href="https://www.youtube.com/@kirillzeynalov" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.instagram.com/madebykirill" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@madebykirill" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://vk.com/madeby.kirill" target="_blank" rel="noopener">VK</a>
+  </div>
+
+  <div class="footer-cta">
+    <h3>Let's Create Something Together</h3>
+    <a href="mailto:hello.madebykirill@gmail.com">hello.madebykirill@gmail.com</a>
+  </div>
+
+  <div class="footer-copy" id="footer-copy"></div>
+
+</footer>
+
+</div><!-- end .page-wrap -->
+
+<script>
+  /* ── Footer year ── */
+  (function() {
+    var year = new Date().getFullYear();
+    document.getElementById('footer-copy').innerHTML =
+      '\u00A9 ' + year + ' | All rights reserved<br>Kirill Zeynalov | Digital Content Creation';
+  })();
+
+  /* ── Mobile menu ── */
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var menuBackdrop = document.getElementById('menuBackdrop');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', function() {
+    mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  menuBackdrop.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
+
+  /* ════════════════════════════════════════
+     RGB COLOUR PICKER — all logic below
+  ════════════════════════════════════════ */
+
+  const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+
+  function rgbToHex(r,g,b){
+    const toHex = n => n.toString(16).padStart(2,'0').toUpperCase();
+    return '#' + toHex(clamp(Math.round(r),0,255)) + toHex(clamp(Math.round(g),0,255)) + toHex(clamp(Math.round(b),0,255));
+  }
+
+  function hexToRgb(hex){
+    if(!hex) return null;
+    hex = String(hex).trim().replace(/^#/,'');
+    if(hex.length===3) hex = hex.split('').map(c=>c+c).join('');
+    if(!/^[0-9a-fA-F]{6}$/.test(hex)) return null;
+    const val = parseInt(hex,16);
+    return { r: (val>>16)&255, g: (val>>8)&255, b: val & 255 };
+  }
+
+  function rgbToHsv(r,g,b){
+    r/=255; g/=255; b/=255;
+    const max = Math.max(r,g,b), min = Math.min(r,g,b);
+    const d = max - min;
+    let h = 0;
+    if(d !== 0){
+      if(max === r) h = ((g - b) / d) % 6;
+      else if(max === g) h = ((b - r) / d) + 2;
+      else h = ((r - g) / d) + 4;
+      h = Math.round(h * 60);
+      if(h < 0) h += 360;
+    }
+    const s = max === 0 ? 0 : d / max;
+    const v = max;
+    return [Math.round(h), Math.round(s * 100), Math.round(v * 100)];
+  }
+
+  function hsvToRgb(h,s,v){
+    s /= 100; v /= 100;
+    const c = v * s;
+    const x = c * (1 - Math.abs(((h/60) % 2) - 1));
+    const m = v - c;
+    let r=0,g=0,b=0;
+    if(0<=h && h<60){ r=c; g=x; b=0; }
+    else if(60<=h && h<120){ r=x; g=c; b=0; }
+    else if(120<=h && h<180){ r=0; g=c; b=x; }
+    else if(180<=h && h<240){ r=0; g=x; b=c; }
+    else if(240<=h && h<300){ r=x; g=0; b=c; }
+    else { r=c; g=0; b=x; }
+    return [Math.round((r+m)*255), Math.round((g+m)*255), Math.round((b+m)*255)];
+  }
+
+  function rgbToHsl(r,g,b){
+    r/=255; g/=255; b/=255;
+    const max = Math.max(r,g,b), min = Math.min(r,g,b);
+    let h = 0, s = 0;
+    const l = (max + min) / 2;
+    const d = max - min;
+    if(d !== 0){
+      s = d / (1 - Math.abs(2*l - 1));
+      if(max === r) h = ((g - b) / d) % 6;
+      else if(max === g) h = ((b - r) / d) + 2;
+      else h = ((r - g) / d) + 4;
+      h = Math.round(h * 60);
+      if(h < 0) h += 360;
+    }
+    return [Math.round(h), Math.round(s * 100), Math.round(l * 100)];
+  }
+
+  function hslToRgb(h,s,l){
+    s /= 100; l /= 100;
+    const c = (1 - Math.abs(2*l - 1)) * s;
+    const x = c * (1 - Math.abs(((h/60) % 2) - 1));
+    const m = l - c/2;
+    let r=0,g=0,b=0;
+    if(0<=h && h<60){ r=c; g=x; b=0; }
+    else if(60<=h && h<120){ r=x; g=c; b=0; }
+    else if(120<=h && h<180){ r=0; g=c; b=x; }
+    else if(180<=h && h<240){ r=0; g=x; b=c; }
+    else if(240<=h && h<300){ r=x; g=0; b=c; }
+    else { r=c; g=0; b=x; }
+    return [Math.round((r+m)*255), Math.round((g+m)*255), Math.round((b+m)*255)];
+  }
+
+  function rgbToCmyk(r,g,b){
+    const nr = r/255, ng = g/255, nb = b/255;
+    const k = 1 - Math.max(nr,ng,nb);
+    if(k === 1) return [0,0,0,100];
+    const c = (1 - nr - k) / (1 - k);
+    const m = (1 - ng - k) / (1 - k);
+    const y = (1 - nb - k) / (1 - k);
+    return [Math.round(c*100), Math.round(m*100), Math.round(y*100), Math.round(k*100)];
+  }
+
+  function cmykToRgb(c,m,y,k){
+    c /= 100; m /= 100; y /= 100; k /= 100;
+    return [Math.round(255*(1-c)*(1-k)), Math.round(255*(1-m)*(1-k)), Math.round(255*(1-y)*(1-k))];
+  }
+
+  function parseRgbString(s){
+    if(!s) return null;
+    s = String(s).trim().replace(/RGB|rgb|\(|\)/gi,'');
+    const parts = s.split(/[,\/\s]+/).filter(Boolean);
+    if(parts.length < 3) return null;
+    const r = parseInt(parts[0]), g = parseInt(parts[1]), b = parseInt(parts[2]);
+    if([r,g,b].some(v => Number.isNaN(v))) return null;
+    return [clamp(r,0,255), clamp(g,0,255), clamp(b,0,255)];
+  }
+
+  function parseCmykString(s){
+    if(!s) return null;
+    s = String(s).trim().toUpperCase();
+    if(/[CMYK]/.test(s) && s.indexOf(',')===-1 && s.indexOf(' ')===-1){
+      const match = s.match(/C[:\s]?(\d+)[^\d]*M[:\s]?(\d+)[^\d]*Y[:\s]?(\d+)[^\d]*K[:\s]?(\d+)/i);
+      if(match) return [clamp(parseInt(match[1]),0,100), clamp(parseInt(match[2]),0,100), clamp(parseInt(match[3]),0,100), clamp(parseInt(match[4]),0,100)];
+    }
+    const parts = s.replace(/[A-Z:]/g,' ').split(/[,;\s]+/).filter(Boolean);
+    if(parts.length < 4) return null;
+    const vals = parts.slice(0,4).map(p => parseFloat(p));
+    if(vals.some(v => Number.isNaN(v))) return null;
+    return vals.map(v => clamp(Math.round(v),0,100));
+  }
+
+  function parseAnglePercentTriplet(s){
+    if(!s) return null;
+    s = String(s).trim().replace(/HSV|HSL|[()]|%/gi,'');
+    const parts = s.split(/[,\/\s]+/).filter(Boolean);
+    if(parts.length < 3) return null;
+    const a = parseFloat(parts[0]), b = parseFloat(parts[1]), c = parseFloat(parts[2]);
+    if(Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c)) return null;
+    return [clamp(Math.round(a),0,360), clamp(Math.round(b),0,100), clamp(Math.round(c),0,100)];
+  }
+
+  const colorCanvas = document.getElementById('color-canvas');
+  const colorCtx = colorCanvas.getContext('2d');
+  const hueCanvas = document.getElementById('hue-canvas');
+  const hueCtx = hueCanvas.getContext('2d');
+
+  const hexIn  = document.getElementById('hex');
+  const rgbIn  = document.getElementById('rgb');
+  const cmykIn = document.getElementById('cmyk');
+  const hsvIn  = document.getElementById('hsv');
+  const hslIn  = document.getElementById('hsl');
+
+  let active = false;
+  let currentHue = 0;
+  let pick = { x: 0, y: 0 };
+
+  function setCanvasSizes(){
+    const dpi = window.devicePixelRatio || 1;
+    const rc = colorCanvas.getBoundingClientRect();
+    colorCanvas.width  = Math.max(1, Math.round(rc.width  * dpi));
+    colorCanvas.height = Math.max(1, Math.round(rc.height * dpi));
+    colorCanvas.style.width  = rc.width  + 'px';
+    colorCanvas.style.height = rc.height + 'px';
+    const rh = hueCanvas.getBoundingClientRect();
+    hueCanvas.width  = Math.max(1, Math.round(rh.width  * dpi));
+    hueCanvas.height = Math.max(1, Math.round(rh.height * dpi));
+    hueCanvas.style.width  = rh.width  + 'px';
+    hueCanvas.style.height = rh.height + 'px';
+  }
+
+  setCanvasSizes();
+  window.addEventListener('resize', () => {
+    setCanvasSizes();
+    drawColorField();
+    drawHue();
+    drawPickIndicator();
+    drawHueIndicator();
+  });
+
+  function drawColorField(){
+    const w = colorCanvas.width, h = colorCanvas.height;
+    const img = colorCtx.createImageData(w, h);
+    for(let x = 0; x < w; x++){
+      const s = x / (w - 1);
+      for(let y = 0; y < h; y++){
+        const v = 1 - (y / (h - 1));
+        const [r,g,b] = hsvToRgb(currentHue, s*100, v*100);
+        const idx = (y*w + x)*4;
+        img.data[idx] = r; img.data[idx+1] = g; img.data[idx+2] = b; img.data[idx+3] = 255;
+      }
+    }
+    colorCtx.putImageData(img, 0, 0);
+  }
+
+  function drawHue(){
+    const w = hueCanvas.width, h = hueCanvas.height;
+    const grad = hueCtx.createLinearGradient(0,0,w,0);
+    grad.addColorStop(0.0, 'rgb(255,0,0)');
+    grad.addColorStop(1/6, 'rgb(255,255,0)');
+    grad.addColorStop(2/6, 'rgb(0,255,0)');
+    grad.addColorStop(3/6, 'rgb(0,255,255)');
+    grad.addColorStop(4/6, 'rgb(0,0,255)');
+    grad.addColorStop(5/6, 'rgb(255,0,255)');
+    grad.addColorStop(1.0, 'rgb(255,0,0)');
+    hueCtx.fillStyle = grad;
+    hueCtx.fillRect(0,0,w,h);
+  }
+
+  function drawPickIndicator(){
+    const scaleX = colorCanvas.width  / colorCanvas.clientWidth;
+    const scaleY = colorCanvas.height / colorCanvas.clientHeight;
+    const px = clamp(Math.round(pick.x * scaleX), 0, colorCanvas.width  - 1);
+    const py = clamp(Math.round(pick.y * scaleY), 0, colorCanvas.height - 1);
+    drawColorField();
+    colorCtx.beginPath();
+    colorCtx.lineWidth = Math.max(2, Math.round(2 * (window.devicePixelRatio || 1)));
+    colorCtx.strokeStyle = '#ffffff';
+    colorCtx.arc(px, py, 8 * (window.devicePixelRatio || 1), 0, Math.PI*2);
+    colorCtx.stroke();
+  }
+
+  function drawHueIndicator(){
+    const w = hueCanvas.width;
+    const x = clamp(Math.round((currentHue / 360) * (w - 1)), 0, w - 1);
+    drawHue();
+    hueCtx.beginPath();
+    hueCtx.lineWidth = Math.max(2, Math.round(2 * (window.devicePixelRatio || 1)));
+    hueCtx.strokeStyle = '#ffffff';
+    hueCtx.arc(x, Math.round(hueCanvas.height/2), Math.round(hueCanvas.height/2)-2, 0, Math.PI*2);
+    hueCtx.stroke();
+  }
+
+  function updateAllFromRgb(r,g,b){
+    if(active) return;
+    active = true;
+    const [h,s,v] = rgbToHsv(r,g,b);
+    currentHue = h;
+    const clientW = colorCanvas.clientWidth, clientH = colorCanvas.clientHeight;
+    pick.x = clamp(Math.round((s/100) * (clientW-1)), 0, clientW-1);
+    pick.y = clamp(Math.round((1-(v/100)) * (clientH-1)), 0, clientH-1);
+    hexIn.value  = rgbToHex(r,g,b);
+    rgbIn.value  = `${r}, ${g}, ${b}`;
+    const cmyk   = rgbToCmyk(r,g,b);
+    cmykIn.value = `${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]}`;
+    hsvIn.value  = `${h}, ${s}, ${v}`;
+    const [hh,ss,ll] = rgbToHsl(r,g,b);
+    hslIn.value  = `${hh}, ${ss}, ${ll}`;
+    drawColorField();
+    drawPickIndicator();
+    drawHueIndicator();
+    active = false;
+  }
+
+  function tryUpdateFromHex(){
+    const parsed = hexToRgb(hexIn.value.trim());
+    if(parsed) updateAllFromRgb(parsed.r, parsed.g, parsed.b);
+  }
+  function tryUpdateFromRgb(){
+    const parsed = parseRgbString(rgbIn.value);
+    if(parsed) updateAllFromRgb(parsed[0], parsed[1], parsed[2]);
+  }
+  function tryUpdateFromCmyk(){
+    const parsed = parseCmykString(cmykIn.value);
+    if(parsed){ const [r,g,b] = cmykToRgb(parsed[0],parsed[1],parsed[2],parsed[3]); updateAllFromRgb(r,g,b); }
+  }
+  function tryUpdateFromHsv(){
+    const parsed = parseAnglePercentTriplet(hsvIn.value);
+    if(parsed){ const [r,g,b] = hsvToRgb(parsed[0],parsed[1],parsed[2]); updateAllFromRgb(r,g,b); }
+  }
+  function tryUpdateFromHsl(){
+    const parsed = parseAnglePercentTriplet(hslIn.value);
+    if(parsed){ const [r,g,b] = hslToRgb(parsed[0],parsed[1],parsed[2]); updateAllFromRgb(r,g,b); }
+  }
+
+  function makeDebounced(tryFn) {
+    let timer = null;
+    return {
+      onInput: function() {
+        if(active) return;
+        clearTimeout(timer);
+        timer = setTimeout(tryFn, 400);
+      },
+      onCommit: function() {
+        clearTimeout(timer);
+        if(!active) tryFn();
+      }
+    };
+  }
+
+  const handlers = {
+    hex:  makeDebounced(tryUpdateFromHex),
+    rgb:  makeDebounced(tryUpdateFromRgb),
+    cmyk: makeDebounced(tryUpdateFromCmyk),
+    hsv:  makeDebounced(tryUpdateFromHsv),
+    hsl:  makeDebounced(tryUpdateFromHsl),
+  };
+
+  [hexIn, rgbIn, cmykIn, hsvIn, hslIn].forEach(function(el) {
+    const h = handlers[el.id];
+    el.addEventListener('input', h.onInput);
+    el.addEventListener('blur',  h.onCommit);
+    el.addEventListener('keydown', function(e) {
+      if(e.key === 'Enter') { e.preventDefault(); h.onCommit(); }
+    });
+  });
+
+  function clientToCanvasCoords(canvasElem, evt){
+    const rect = canvasElem.getBoundingClientRect();
+    return {
+      x: clamp(evt.clientX - rect.left, 0, rect.width  - 1),
+      y: clamp(evt.clientY - rect.top,  0, rect.height - 1)
+    };
+  }
+
+  let draggingColor = false;
+  colorCanvas.addEventListener('pointerdown', (e) => {
+    draggingColor = true;
+    colorCanvas.setPointerCapture(e.pointerId);
+    const pos = clientToCanvasCoords(colorCanvas, e);
+    pick.x = pos.x; pick.y = pos.y;
+    const scaleX = colorCanvas.width / colorCanvas.clientWidth;
+    const scaleY = colorCanvas.height / colorCanvas.clientHeight;
+    const data = colorCtx.getImageData(Math.round(pos.x*scaleX), Math.round(pos.y*scaleY), 1, 1).data;
+    updateAllFromRgb(data[0], data[1], data[2]);
+  });
+  window.addEventListener('pointermove', (e) => {
+    if(!draggingColor) return;
+    const pos = clientToCanvasCoords(colorCanvas, e);
+    pick.x = pos.x; pick.y = pos.y;
+    const scaleX = colorCanvas.width / colorCanvas.clientWidth;
+    const scaleY = colorCanvas.height / colorCanvas.clientHeight;
+    const data = colorCtx.getImageData(Math.round(pos.x*scaleX), Math.round(pos.y*scaleY), 1, 1).data;
+    updateAllFromRgb(data[0], data[1], data[2]);
+  });
+  window.addEventListener('pointerup', (e) => {
+    if(draggingColor){ draggingColor = false; colorCanvas.releasePointerCapture && colorCanvas.releasePointerCapture(e.pointerId); }
+  });
+
+  let draggingHue = false;
+  hueCanvas.addEventListener('pointerdown', (e) => {
+    draggingHue = true;
+    hueCanvas.setPointerCapture(e.pointerId);
+    const pos = clientToCanvasCoords(hueCanvas, e);
+    currentHue = Math.round((pos.x / (hueCanvas.clientWidth - 1)) * 360);
+    drawHueIndicator();
+    const s = (pick.x / colorCanvas.clientWidth)  * 100;
+    const v = (1 - (pick.y / colorCanvas.clientHeight)) * 100;
+    const [r,g,b] = hsvToRgb(currentHue, s, v);
+    updateAllFromRgb(r,g,b);
+  });
+  window.addEventListener('pointermove', (e) => {
+    if(!draggingHue) return;
+    const pos = clientToCanvasCoords(hueCanvas, e);
+    currentHue = Math.round((pos.x / (hueCanvas.clientWidth - 1)) * 360);
+    drawHueIndicator();
+    const s = (pick.x / colorCanvas.clientWidth)  * 100;
+    const v = (1 - (pick.y / colorCanvas.clientHeight)) * 100;
+    const [r,g,b] = hsvToRgb(currentHue, s, v);
+    updateAllFromRgb(r,g,b);
+  });
+  window.addEventListener('pointerup', (e) => {
+    if(draggingHue){ draggingHue = false; hueCanvas.releasePointerCapture && hueCanvas.releasePointerCapture(e.pointerId); }
+  });
+
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById(btn.getAttribute('data-target'));
+      if(!el) return;
+      el.select && el.select();
+      navigator.clipboard.writeText(el.value).catch(() => {
+        try { document.execCommand('copy'); } catch(e){}
+      });
+      const orig = btn.textContent;
+      btn.textContent = 'Copied';
+      btn.style.color = 'var(--orange)';
+      setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 1200);
+    });
+  });
+
+  document.getElementById('reset-button').addEventListener('click', () => {
+    currentHue = 0;
+    pick.x = colorCanvas.clientWidth  - 1;
+    pick.y = 0;
+    drawHue();
+    drawHueIndicator();
+    drawColorField();
+    drawPickIndicator();
+    updateAllFromRgb(255, 0, 0);
+  });
+
+  drawHue();
+  drawHueIndicator();
+  drawColorField();
+  pick.x = colorCanvas.clientWidth - 1;
+  pick.y = 0;
+  drawPickIndicator();
+  updateAllFromRgb(255, 0, 0);
+</script>
+
+</body>
+</html>

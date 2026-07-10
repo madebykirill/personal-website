@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audio — Kirill Zeynalov</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+
+    <nav class="nav-left">
+      <a href="/audio/"class="active">Audio</a>
+      <a href="/video/">Video</a>
+      <a href="/visuals/">Visuals</a>
+    </nav>
+
+    <div class="logo-wrap">
+      <a href="/">
+        <img
+          src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/00-misc/KZ%20-%20Logotype%20-%20Large.png"
+          alt="Kirill Zeynalov"
+          onerror="this.style.display='none'"
+        >
+      </a>
+    </div>
+
+    <nav class="nav-right">
+      <a href="/blog/">Blog</a>
+      <a href="/resources/">Resources</a>
+      <a href="/about/">About</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-backdrop" id="menuBackdrop"></div>
+  <div class="mobile-menu-panel">
+    <nav class="mobile-menu-links">
+      <a href="/audio/"class="active"><span class="link-dot"></span>Audio</a>
+      <a href="/video/"><span class="link-dot"></span>Video</a>
+      <a href="/visuals/"><span class="link-dot"></span>Visuals</a>
+      <a href="/blog/"><span class="link-dot"></span>Blog</a>
+      <a href="/resources/"><span class="link-dot"></span>Resources</a>
+      <a href="/about/"><span class="link-dot"></span>About</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ══ HERO BANNER ══ -->
+<section class="hero hero--tall">
+  <video 
+    class="hero-bg" 
+    autoplay 
+    loop 
+    muted 
+    playsinline
+    poster="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/resources/free-music/Free%20Music%20-%20Hero%20Image.jpg"
+  >
+    <source src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/audio/_page-media/AUDIO%20-%20Header%20Video%20v01.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <div class="hero-rule"></div>
+    <span class="hero-label">Audio</span>
+  </div>
+</section>
+
+
+<!-- ══ MAIN ══ -->
+<main>
+
+  <p class="intro-text intro-text--wide">
+    Welcome to my world of sound. Here, you'll find a collection of my most cherished projects, from intricate sound design and evocative film scores to heartfelt songwriting and polished music production. Each piece represents my passion for creating audio experiences that resonate, inspire, and elevate. Dive in and explore the sounds that have shaped my journey. 
+  </p>
+
+  <!-- ══ WORK GRID ══ -->
+  <!--
+    HOW TO ADD MORE ROWS:
+    Copy one <a class="work-item"> block below and paste it inside .work-grid.
+    The grid is 3 columns wide — add items in multiples of 3 to keep rows even.
+    Update the href, img src, alt, aria-label, and .work-item-title text for each.
+    No CSS changes needed — the grid expands automatically.
+  -->
+  <div class="work-grid">
+
+    <!--
+      ─ TO ADD ROW 4, paste below and fill in your own values: ─
+
+      <a class="work-item" href="YOUR-LINK" aria-label="Project name">
+        <img src="YOUR-IMAGE-URL" alt="Project name" loading="lazy">
+        <div class="work-item-overlay"><span class="work-item-title">Project Title</span></div>
+      </a>
+
+      (repeat 3 times for a full row)
+    -->
+
+    <!-- ─ ROW 3 ─ -->
+    <a class="work-item" href="/audio/bscl-album" aria-label="Selected work 1">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/selected-projects/BS%26CL%20-%20Thumbnail%20(Clean).jpg" alt="Between The Stars And City Lights" loading="lazy">
+      <div class="work-item-overlay"><span class="work-item-title">Between The Stars And City Lights</span></div>
+    </a>
+
+    <a class="work-item" href="/video/echoes-of-highlands" aria-label="Selected work 2">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/echoes-of-highlands/Echoes%20Of%20Highlands%20-%20Main%20Thumbnail%20-%20Clean.jpg" alt="Echoes Of Highlands OST" loading="lazy">
+      <div class="work-item-overlay"><span class="work-item-title">Echoes Of Highlands OST</span></div>
+    </a>
+
+    <a class="work-item" href="/hypermode" aria-label="Selected work 3">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/audio/hypermode/Hypermode%20-%20Logo%20for%20SM.jpg" alt="Hypermode" loading="lazy">
+      <div class="work-item-overlay"><span class="work-item-title">Hypermode</span></div>
+    </a>
+
+    <!-- ─ ROW 2 ─ -->
+    <a class="work-item" href="/audio/forever-forgiven" aria-label="Selected work 4">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/audio/forever-forgiven/Forever%20Forgiven%20-%20Thumbnail%20(Clean).jpg" alt="Forever Forgiven" loading="lazy">
+      <div class="work-item-overlay"><span class="work-item-title">Forever Forgiven</span></div>
+    </a>
+
+    <a class="work-item" href="/video/mont-orgueil" aria-label="Selected work 5">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/selected-projects/Mont%20Orgueil%20Castle%20-%20Thumbnail%20(Clean).jpg" alt="Mont Orgueil Castle OST" loading="lazy">
+      <div class="work-item-overlay"><span class="work-item-title">Mont Orgueil Castle OST</span></div>
+    </a>
+
+    <a class="work-item" href="/video/cornwall" aria-label="Selected work 6">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/cornwall/Cornwall%20-%20Thumbnail%20Main%20(Clean).jpg" alt="Cornwall OST" loading="lazy">
+      <div class="work-item-overlay"><span class="work-item-title">Cornwall OST</span></div>
+    </a>
+
+    <!-- ─ ROW 1 ─ -->
+    <a class="work-item" href="/audio/elevation-ep" aria-label="Selected work 7">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/audio/elevation-ep/Elevation%20EP%20-%20Thumbnail%20(Clean).jpg" alt="Elevation EP" loading="lazy">
+      <div class="work-item-overlay"><span class="work-item-title">Elevation EP</span></div>
+    </a>
+
+    <a class="work-item" href="/audio/autumn-ep" aria-label="Selected work 8">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/audio/autumn-ep/Autumn%20EP%20-%20Thumbnail%20(Clean).jpg" alt="Autumn EP" loading="lazy">
+      <div class="work-item-overlay"><span class="work-item-title">Autumn EP</span></div>
+    </a>
+
+    <a class="work-item" href="/audio/the-battle-trailer" aria-label="Selected work 9">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/audio/the-battle-trailer/Battle%20-%20Thumbnail%20(Clean).jpg" alt="The Battle OST" loading="lazy">
+      <div class="work-item-overlay"><span class="work-item-title">The Battle OST</span></div>
+    </a>
+
+  </div>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+
+  <div class="footer-social">
+    <a href="https://www.youtube.com/@kirillzeynalov" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.instagram.com/madebykirill" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@madebykirill" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://vk.com/madeby.kirill" target="_blank" rel="noopener">VK</a>
+  </div>
+
+  <div class="footer-cta">
+    <h3>Let's Create Something Together</h3>
+    <a href="mailto:hello.madebykirill@gmail.com">hello.madebykirill@gmail.com</a>
+  </div>
+
+  <div class="footer-copy" id="footer-copy"></div>
+
+</footer>
+
+</div><!-- end .page-wrap -->
+
+<script>
+(function () {
+
+  /* ── Footer year ── */
+  document.getElementById('footer-copy').innerHTML =
+    '\u00A9 ' + new Date().getFullYear() + ' | All rights reserved<br>Kirill Zeynalov | Digital Content Creation';
+
+  /* ── Mobile menu ── */
+  var hamburger    = document.getElementById('hamburger');
+  var mobileMenu   = document.getElementById('mobileMenu');
+  var menuBackdrop = document.getElementById('menuBackdrop');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', function () {
+    mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  menuBackdrop.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+})();
+</script>
+
+</body>
+</html>

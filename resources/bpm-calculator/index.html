@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPM Calculator — Kirill Zeynalov</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+
+    <nav class="nav-left">
+      <a href="/audio/">Audio</a>
+      <a href="/video/">Video</a>
+      <a href="/visuals/">Visuals</a>
+    </nav>
+
+    <div class="logo-wrap">
+      <a href="https://www.kirillzeynalov.com/">
+        <img
+          src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/00-misc/KZ%20-%20Logotype%20-%20Large.png"
+          alt="Kirill Zeynalov"
+          onerror="this.style.display='none'"
+        >
+      </a>
+    </div>
+
+    <nav class="nav-right">
+      <a href="/blog/">Blog</a>
+      <a href="/resources/">Resources</a>
+      <a href="/about/">About</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-backdrop" id="menuBackdrop"></div>
+  <div class="mobile-menu-panel">
+    <nav class="mobile-menu-links">
+      <a href="/audio/"><span class="link-dot"></span>Audio</a>
+      <a href="/video/"><span class="link-dot"></span>Video</a>
+      <a href="/visuals/"><span class="link-dot"></span>Visuals</a>
+      <a href="/blog/"><span class="link-dot"></span>Blog</a>
+      <a href="/resources/"><span class="link-dot"></span>Resources</a>
+      <a href="/about/"><span class="link-dot"></span>About</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ══ HERO BANNER ══ -->
+<!-- SWAP IMAGE: replace the src below with any image URL you want -->
+<section class="hero">
+  <img
+    class="hero-bg"
+    src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/resources/online-tools/01%20-%20BPM%20Calculator%20(Clean).jpg"
+    alt="BPM Calculator"
+  >
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <div class="hero-rule"></div>
+    <span class="hero-label">BPM Calculator</span>
+  </div>
+</section>
+
+<!-- ══ MAIN ══ -->
+<main>
+
+  <p class="intro-text">
+    BPM Calculator is a simple and intuitive tool that measures the tempo of any song or rhythm through button taps or by pressing the Spacebar. Each tap calculates the beats per minute (BPM), providing an accurate real-time tempo reading.
+  </p>
+
+  <!-- ══ BPM TOOL ══ -->
+  <div class="tool-wrap">
+    <div class="bpm-container">
+      <h1 class="bpm-title">Tap Tempo</h1>
+      <div class="bpm-display">
+        <span class="bpm-value" id="bpm-value">---</span>
+        <span class="bpm-unit">BPM</span>
+      </div>
+      <button id="tap-button" aria-label="Tap to calculate BPM">
+        <span class="button-text">TAP</span>
+      </button>
+      <p class="instructions">
+        Tap the button or Spacebar<br>
+        rhythmically to calculate the tempo
+      </p>
+      <button id="reset-button">Reset</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+
+  <div class="footer-social">
+    <a href="https://www.youtube.com/@kirillzeynalov" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.instagram.com/madebykirill" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@madebykirill" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://vk.com/madeby.kirill" target="_blank" rel="noopener">VK</a>
+  </div>
+
+  <div class="footer-cta">
+    <h3>Let's Create Something Together</h3>
+    <a href="mailto:hello.madebykirill@gmail.com">hello.madebykirill@gmail.com</a>
+  </div>
+
+  <div class="footer-copy" id="footer-copy"></div>
+
+</footer>
+
+</div><!-- end .page-wrap -->
+
+<script>
+  (function() {
+    var year = new Date().getFullYear();
+    document.getElementById('footer-copy').innerHTML =
+      '\u00A9 ' + year + ' | All rights reserved<br>Kirill Zeynalov | Digital Content Creation';
+  })();
+
+  /* ── Mobile menu ── */
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var menuBackdrop = document.getElementById('menuBackdrop');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', function() {
+    mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  menuBackdrop.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
+
+  /* ── BPM Tap Tempo Tool ── */
+  const tapButton = document.getElementById('tap-button');
+  const resetButton = document.getElementById('reset-button');
+  const bpmValueDisplay = document.getElementById('bpm-value');
+
+  const MAX_TAPS_FOR_AVERAGE = 16;
+  let tapTimestamps = [];
+  let resetTimeoutId = null;
+
+  const resetCalculator = () => {
+    tapTimestamps = [];
+    bpmValueDisplay.textContent = '---';
+    bpmValueDisplay.style.color = 'var(--white)';
+    if (resetTimeoutId) {
+      clearTimeout(resetTimeoutId);
+      resetTimeoutId = null;
+    }
+  };
+
+  const calculateAndDisplayBpm = () => {
+    if (tapTimestamps.length < 2) return;
+
+    const intervals = [];
+    for (let i = 1; i < tapTimestamps.length; i++) {
+      intervals.push(tapTimestamps[i] - tapTimestamps[i - 1]);
+    }
+
+    const totalIntervalTime = intervals.reduce((sum, interval) => sum + interval, 0);
+    const averageInterval = totalIntervalTime / intervals.length;
+
+    if (averageInterval > 0) {
+      const bpm = (60 * 1000) / averageInterval;
+      bpmValueDisplay.textContent = bpm.toFixed(0);
+      bpmValueDisplay.style.color = 'var(--orange)';
+    }
+  };
+
+  const handleTap = () => {
+    const now = Date.now();
+    tapTimestamps.push(now);
+    if (tapTimestamps.length > MAX_TAPS_FOR_AVERAGE) {
+      tapTimestamps.shift();
+    }
+    calculateAndDisplayBpm();
+  };
+
+  tapButton.addEventListener('click', handleTap);
+  resetButton.addEventListener('click', resetCalculator);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space' && document.activeElement !== resetButton) {
+      event.preventDefault();
+      if (!tapButton.classList.contains('tap-active')) {
+        tapButton.classList.add('tap-active');
+        handleTap();
+      }
+    }
+  });
+
+  document.addEventListener('keyup', (event) => {
+    if (event.code === 'Space') {
+      event.preventDefault();
+      tapButton.classList.remove('tap-active');
+    }
+  });
+</script>
+
+</body>
+</html>

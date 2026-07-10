@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surrey Hills — Kirill Zeynalov</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+
+    <nav class="nav-left">
+      <a href="/audio/">Audio</a>
+      <a href="/video/">Video</a>
+      <a href="/visuals/">Visuals</a>
+    </nav>
+
+    <div class="logo-wrap">
+      <a href="/">
+        <img
+          src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/00-misc/KZ%20-%20Logotype%20-%20Large.png"
+          alt="Kirill Zeynalov"
+          onerror="this.style.display='none'"
+        >
+      </a>
+    </div>
+
+    <nav class="nav-right">
+      <a href="/blog/">Blog</a>
+      <a href="/resources/">Resources</a>
+      <a href="/about/">About</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-backdrop" id="menuBackdrop"></div>
+  <div class="mobile-menu-panel">
+    <nav class="mobile-menu-links">
+      <a href="/audio/"><span class="link-dot"></span>Audio</a>
+      <a href="/video/"><span class="link-dot"></span>Video</a>
+      <a href="/visuals/"><span class="link-dot"></span>Visuals</a>
+      <a href="/blog/"><span class="link-dot"></span>Blog</a>
+      <a href="/resources/"><span class="link-dot"></span>Resources</a>
+      <a href="/about/"><span class="link-dot"></span>About</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ══ HERO BANNER ══ -->
+<section class="hero hero--tall">
+  <img
+    class="hero-bg"
+    src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/Surrey%20Hills%20-%20Hero%20Image.jpg"
+    alt="Surrey Hills"
+  >
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <div class="hero-rule"></div>
+    <span class="hero-label">Surrey Hills</span>
+  </div>
+</section>
+
+<!-- ══ MAIN ══ -->
+<main class="project-page-container">
+
+  <!-- ── CUSTOM VIDEO PLAYER ── -->
+  <div class="video-frame" id="videoFrame">
+    <img class="video-thumb" id="videoThumb"
+      src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/Surrey%20Hills%20-%20Thumbnail%20(Clean).jpg"
+      alt="Surrey Hills — watch the film">
+    <div class="video-thumb-overlay" id="videoPlayOverlay">
+      <button class="video-play-btn" aria-label="Play video">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+    <div class="yt-player-host" id="ytPlayerHost"></div>
+    <div class="video-hover-catcher" id="videoHoverCatcher"></div>
+
+    <!-- Overlaid brand-styled controls — hidden until the video area is hovered (see .video-controls in styles.css) -->
+    <div class="video-controls" id="videoControls">
+      <button class="vc-btn play-btn" id="vcPlayPause" aria-label="Play / Pause">
+        <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <div class="player-track">
+        <div class="player-progress-wrap" id="vcProgressWrap"><div class="player-progress-fill" id="vcProgressFill"></div></div>
+        <span class="player-time" id="vcTime">0:00 / 0:00</span>
+      </div>
+      <button class="vc-btn" id="vcMute" aria-label="Mute / Unmute">
+        <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12z"/></svg>
+        <svg class="icon-vol-off" viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.42.05-.63zM19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
+      </button>
+      <input type="range" class="vc-volume" id="vcVolume" min="0" max="100" value="80" aria-label="Volume">
+      <button class="vc-btn" id="vcFullscreen" aria-label="Enter fullscreen">
+        <svg class="icon-expand" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+        <svg class="icon-collapse" viewBox="0 0 24 24" style="display:none"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ── PROJECT INFO ── -->
+  <div class="tool-card">
+    <h2 class="project-subheader project-subheader--boxed">Surrey Hills</h2>
+    <div class="credit-list">
+      <p class="credit-line"><em>Directed & Produced by:</em>Kirill Zeynalov</p>
+      <p class="credit-line"><em>Genre:</em>Travel Documentary</p>
+      <p class="credit-line"><em>Release Date:</em>2 October 2021</p>
+    </div>
+
+    <p class="project-desc">
+      Join Kirill on a journey through Surrey Hills, an Area of Outstanding Natural Beauty in England. This video showcases scenic trails, picturesque villages, and the rich natural heritage of this stunning region. Discover the peaceful landscapes, historic landmarks, and hidden spots that make Surrey Hills a perfect getaway for nature enthusiasts and adventurers alike.
+    </p>
+
+    <div class="gear-title">Gear Used</div>
+    <ul class="gear-list">
+      <li><lit>Camera:</lit> Panasonic GH5</li>
+      <li><lit>Lens:</lit> Samyang 24mm T1.5 / Laowa 7.5mm / GVario 12-60mm + Freewell VND Filter</li>
+      <li><lit>Drone:</lit> DJI Air2s + Freewell ND/PL Filter</li>
+    </ul>
+  </div>
+   
+  <div class="section-divider"></div>
+
+  <!-- ── GALLERY ── -->
+  <div class="section-header">
+    <span class="dot">●</span>
+    <h2>Gallery</h2>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-item" data-full="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2001.jpeg" data-caption="Surrey Hills - Frame 01">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2001.jpeg" alt="Surrey Hills - Frame 01" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 5L20.49 19l-5-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg></span></div>
+    </div>
+    
+    <div class="gallery-item" data-full="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2002.jpeg" data-caption="Surrey Hills - Frame 02">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2002.jpeg" alt="Surrey Hills - Frame 02" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 5L20.49 19l-5-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg></span></div>
+    </div>
+    <div class="gallery-item" data-full="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2003.jpeg" data-caption="Surrey Hills - Frame 03">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2003.jpeg" alt="Surrey Hills - Frame 03" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 5L20.49 19l-5-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg></span></div>
+    </div>
+    
+    <div class="gallery-item" data-full="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2004.jpeg" data-caption="Surrey Hills - Frame 04">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2004.jpeg" alt="Surrey Hills - Frame 04" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 5L20.49 19l-5-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg></span></div>
+    </div>
+    <div class="gallery-item" data-full="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2005.jpeg" data-caption="Surrey Hills - Frame 05">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2005.jpeg" alt="Surrey Hills - Frame 05" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 5L20.49 19l-5-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg></span></div>
+    </div>
+    <div class="gallery-item" data-full="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2006.jpeg" data-caption="Surrey Hills - Frame 06">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/video/surrey-hills/SH_Gallery%20-%20Frame%2006.jpeg" alt="Surrey Hills - Frame 06" loading="lazy">
+      <div class="gallery-item-overlay"><span class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 5L20.49 19l-5-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg></span></div>
+    </div>
+  </div>
+
+  <!-- placeholder note: swap picsum URLs above for real trip photos when ready (keep 16:9 crops for consistency) -->
+
+</main>
+
+<!-- ══ LIGHTBOX ══ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+    <svg viewBox="0 0 24 24"><path d="M18.3 5.71 12 12.01l-6.29-6.3-1.42 1.42 6.3 6.29-6.3 6.29 1.42 1.42 6.29-6.3 6.29 6.3 1.42-1.42-6.3-6.29 6.3-6.29z"/></svg>
+  </button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">
+    <svg viewBox="0 0 24 24"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+  </button>
+  <div class="lightbox-img-wrap">
+    <img id="lightboxImg" src="" alt="">
+  </div>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">
+    <svg viewBox="0 0 24 24"><path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+  </button>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+
+  <div class="footer-social">
+    <a href="https://www.youtube.com/@kirillzeynalov" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.instagram.com/madebykirill" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@madebykirill" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://vk.com/madeby.kirill" target="_blank" rel="noopener">VK</a>
+  </div>
+
+  <div class="footer-cta">
+    <h3>Let's Create Something Together</h3>
+    <a href="mailto:hello.madebykirill@gmail.com">hello.madebykirill@gmail.com</a>
+  </div>
+
+  <div class="footer-copy" id="footer-copy"></div>
+
+</footer>
+
+</div><!-- end .page-wrap -->
+
+<!-- YouTube IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+  (function() {
+    var year = new Date().getFullYear();
+    document.getElementById('footer-copy').innerHTML =
+      '\u00A9 ' + year + ' | All rights reserved<br>Kirill Zeynalov | Digital Content Creation';
+  })();
+
+  /* ── Mobile menu ── */
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var menuBackdrop = document.getElementById('menuBackdrop');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', function() {
+    mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  menuBackdrop.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
+
+  /* ═══════════════════════════════════════════════
+     CUSTOM YOUTUBE VIDEO PLAYER (brand-styled controls)
+     Swap YOUTUBE_VIDEO_ID below with the real video ID
+     ═══════════════════════════════════════════════ */
+  var YOUTUBE_VIDEO_ID = '_mASQxvMqMI';
+
+  var ytPlayer = null;
+  var ytReady = false;
+  var videoFrame = document.getElementById('videoFrame');
+  var videoPlayOverlay = document.getElementById('videoPlayOverlay');
+  var videoControls = document.getElementById('videoControls');
+  var vcPlayPause = document.getElementById('vcPlayPause');
+  var vcProgressWrap = document.getElementById('vcProgressWrap');
+  var vcProgressFill = document.getElementById('vcProgressFill');
+  var vcTime = document.getElementById('vcTime');
+  var vcMute = document.getElementById('vcMute');
+  var vcVolume = document.getElementById('vcVolume');
+  var vcFullscreen = document.getElementById('vcFullscreen');
+  var vcIconPlay = vcPlayPause.querySelector('.icon-play');
+  var vcIconPause = vcPlayPause.querySelector('.icon-pause');
+  var progressTimer = null;
+
+  function formatTime(seconds) {
+    if (isNaN(seconds) || seconds === Infinity || seconds < 0) return '0:00';
+    var m = Math.floor(seconds / 60);
+    var s = Math.floor(seconds % 60);
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function startProgressTimer() {
+    stopProgressTimer();
+    progressTimer = setInterval(function() {
+      if (!ytPlayer || typeof ytPlayer.getCurrentTime !== 'function') return;
+      var cur = ytPlayer.getCurrentTime();
+      var dur = ytPlayer.getDuration();
+      if (dur > 0) {
+        vcProgressFill.style.width = ((cur / dur) * 100) + '%';
+      }
+      vcTime.textContent = formatTime(cur) + ' / ' + formatTime(dur);
+    }, 250);
+  }
+
+  function stopProgressTimer() {
+    if (progressTimer) { clearInterval(progressTimer); progressTimer = null; }
+  }
+
+  function initYouTubePlayer() {
+    ytPlayer = new YT.Player('ytPlayerHost', {
+      videoId: YOUTUBE_VIDEO_ID,
+      playerVars: {
+        controls: 0,
+        rel: 0,
+        modestbranding: 1,
+        iv_load_policy: 3,
+        playsinline: 1
+      },
+      events: {
+        onReady: function() {
+          ytReady = true;
+          ytPlayer.setVolume(Number(vcVolume.value));
+        },
+        onStateChange: function(e) {
+          if (e.data === YT.PlayerState.PLAYING) {
+            vcIconPlay.style.display = 'none';
+            vcIconPause.style.display = 'block';
+            startProgressTimer();
+          } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+            vcIconPlay.style.display = 'block';
+            vcIconPause.style.display = 'none';
+            stopProgressTimer();
+          }
+        }
+      }
+    });
+  }
+
+  window.onYouTubeIframeAPIReady = function() {
+    initYouTubePlayer();
+  };
+
+  function activateVideo() {
+    videoFrame.classList.add('is-active');
+    showControls();
+    if (ytReady && ytPlayer) {
+      ytPlayer.playVideo();
+    } else {
+      /* API not ready yet — it will autoplay once initialised isn't reliable,
+         so poll briefly until ready then play */
+      var tries = 0;
+      var waitForReady = setInterval(function() {
+        tries++;
+        if (ytReady && ytPlayer) {
+          ytPlayer.playVideo();
+          clearInterval(waitForReady);
+        } else if (tries > 40) {
+          clearInterval(waitForReady);
+        }
+      }, 100);
+    }
+  }
+
+  videoPlayOverlay.addEventListener('click', activateVideo);
+
+  var videoHoverCatcher = document.getElementById('videoHoverCatcher');
+
+  function togglePlayPause() {
+    if (!ytPlayer || typeof ytPlayer.getPlayerState !== 'function') { activateVideo(); return; }
+    var state = ytPlayer.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+      ytPlayer.pauseVideo();
+    } else {
+      if (!videoFrame.classList.contains('is-active')) {
+        activateVideo();
+      } else {
+        ytPlayer.playVideo();
+      }
+    }
+  }
+
+  vcPlayPause.addEventListener('click', togglePlayPause);
+  videoHoverCatcher.addEventListener('click', togglePlayPause);
+
+  vcProgressWrap.addEventListener('click', function(e) {
+    if (!ytPlayer || typeof ytPlayer.getDuration !== 'function') return;
+    var dur = ytPlayer.getDuration();
+    if (!dur) return;
+    var rect = vcProgressWrap.getBoundingClientRect();
+    var pct = (e.clientX - rect.left) / rect.width;
+    ytPlayer.seekTo(pct * dur, true);
+  });
+
+  vcMute.addEventListener('click', function() {
+    if (!ytPlayer) return;
+    if (ytPlayer.isMuted && ytPlayer.isMuted()) {
+      ytPlayer.unMute();
+      vcMute.classList.remove('is-muted');
+    } else {
+      ytPlayer.mute();
+      vcMute.classList.add('is-muted');
+    }
+  });
+
+  vcVolume.addEventListener('input', function() {
+    if (!ytPlayer || typeof ytPlayer.setVolume !== 'function') return;
+    var vol = Number(vcVolume.value);
+    ytPlayer.setVolume(vol);
+    if (vol === 0) {
+      vcMute.classList.add('is-muted');
+    } else {
+      vcMute.classList.remove('is-muted');
+    }
+  });
+
+  var vcIconExpand = vcFullscreen.querySelector('.icon-expand');
+  var vcIconCollapse = vcFullscreen.querySelector('.icon-collapse');
+
+  function isFullscreen() {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement ||
+              document.mozFullScreenElement || document.msFullscreenElement);
+  }
+
+  vcFullscreen.addEventListener('click', function() {
+    if (isFullscreen()) {
+      if (document.exitFullscreen) document.exitFullscreen();
+      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+      else if (document.msExitFullscreen) document.msExitFullscreen();
+    } else {
+      if (videoFrame.requestFullscreen) videoFrame.requestFullscreen();
+      else if (videoFrame.webkitRequestFullscreen) videoFrame.webkitRequestFullscreen();
+      else if (videoFrame.mozRequestFullScreen) videoFrame.mozRequestFullScreen();
+      else if (videoFrame.msRequestFullscreen) videoFrame.msRequestFullscreen();
+    }
+  });
+
+  ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach(function(evt) {
+    document.addEventListener(evt, function() {
+      var fs = isFullscreen();
+      vcIconExpand.style.display = fs ? 'none' : 'block';
+      vcIconCollapse.style.display = fs ? 'block' : 'none';
+      vcFullscreen.setAttribute('aria-label', fs ? 'Exit fullscreen' : 'Enter fullscreen');
+      showControls(); // reset the auto-hide timer so controls are visible right after toggling
+    });
+  });
+
+  /* ── Auto-hide controls after inactivity (works in fullscreen too,
+       where CSS :hover alone can't detect "not hovering" since the
+       frame fills the whole screen) ── */
+  var controlsHideTimer = null;
+
+  function showControls() {
+    videoFrame.classList.add('show-controls');
+    videoFrame.classList.remove('hide-cursor');
+    clearTimeout(controlsHideTimer);
+    controlsHideTimer = setTimeout(function() {
+      videoFrame.classList.remove('show-controls');
+      if (isFullscreen()) videoFrame.classList.add('hide-cursor');
+    }, 2500);
+  }
+
+  function hideControlsNow() {
+    clearTimeout(controlsHideTimer);
+    videoFrame.classList.remove('show-controls');
+    videoFrame.classList.remove('hide-cursor');
+  }
+
+  videoFrame.addEventListener('mousemove', showControls);
+  videoFrame.addEventListener('mouseenter', showControls);
+  videoFrame.addEventListener('mouseleave', hideControlsNow);
+  videoControls.addEventListener('mousemove', showControls);
+  videoHoverCatcher.addEventListener('mousemove', showControls);
+
+  /* ── Playlist players (same behaviour as Free Music page, no download/art) ── */
+  var playlistRows = document.querySelectorAll('.playlist-row');
+
+  playlistRows.forEach(function(row) {
+    var audio = row.querySelector('.audio-source');
+    var playBtn = row.querySelector('.play-btn');
+    var progressWrap = row.querySelector('.player-progress-wrap');
+    var progressFill = row.querySelector('.player-progress-fill');
+    var timeLabel = row.querySelector('.player-time');
+
+    playBtn.addEventListener('click', function() {
+      playlistRows.forEach(function(otherRow) {
+        if (otherRow !== row) {
+          var otherAudio = otherRow.querySelector('.audio-source');
+          var otherBtn = otherRow.querySelector('.play-btn');
+          otherAudio.pause();
+          otherBtn.classList.remove('is-playing');
+        }
+      });
+
+      if (audio.paused) {
+        audio.play();
+        playBtn.classList.add('is-playing');
+      } else {
+        audio.pause();
+        playBtn.classList.remove('is-playing');
+      }
+    });
+
+    audio.addEventListener('timeupdate', function() {
+      if (audio.duration) {
+        var pct = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = pct + '%';
+        timeLabel.textContent = formatTime(audio.currentTime);
+      }
+    });
+
+    audio.addEventListener('ended', function() {
+      playBtn.classList.remove('is-playing');
+      progressFill.style.width = '0%';
+      timeLabel.textContent = '0:00';
+    });
+
+    progressWrap.addEventListener('click', function(e) {
+      if (!audio.duration) return;
+      var rect = progressWrap.getBoundingClientRect();
+      var clickX = e.clientX - rect.left;
+      var pct = clickX / rect.width;
+      audio.currentTime = pct * audio.duration;
+    });
+  });
+
+  /* ── Gallery lightbox ── */
+  var galleryItems = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxClose = document.getElementById('lightboxClose');
+  var lightboxPrev = document.getElementById('lightboxPrev');
+  var lightboxNext = document.getElementById('lightboxNext');
+  var currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    var item = galleryItems[currentIndex];
+    lightboxImg.src = item.getAttribute('data-full');
+    lightboxImg.alt = item.getAttribute('data-caption') || '';
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function showNext(delta) {
+    currentIndex = (currentIndex + delta + galleryItems.length) % galleryItems.length;
+    var item = galleryItems[currentIndex];
+    lightboxImg.src = item.getAttribute('data-full');
+    lightboxImg.alt = item.getAttribute('data-caption') || '';
+  }
+
+  galleryItems.forEach(function(item, index) {
+    item.addEventListener('click', function() { openLightbox(index); });
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+  lightboxPrev.addEventListener('click', function() { showNext(-1); });
+  lightboxNext.addEventListener('click', function() { showNext(1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showNext(-1);
+    if (e.key === 'ArrowRight') showNext(1);
+  });
+</script>
+
+</body>
+</html>

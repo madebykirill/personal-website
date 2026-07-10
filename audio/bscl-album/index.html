@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Between The Stars And City Lights — Kirill Zeynalov</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+
+    <nav class="nav-left">
+      <a href="/audio/">Audio</a>
+      <a href="/video/">Video</a>
+      <a href="/visuals/">Visuals</a>
+    </nav>
+
+    <div class="logo-wrap">
+      <a href="/">
+        <img
+          src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/00-misc/KZ%20-%20Logotype%20-%20Large.png"
+          alt="Kirill Zeynalov"
+          onerror="this.style.display='none'"
+        >
+      </a>
+    </div>
+
+    <nav class="nav-right">
+      <a href="/blog/">Blog</a>
+      <a href="/resources/">Resources</a>
+      <a href="/about/">About</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-backdrop" id="menuBackdrop"></div>
+  <div class="mobile-menu-panel">
+    <nav class="mobile-menu-links">
+      <a href="/audio/"><span class="link-dot"></span>Audio</a>
+      <a href="/video/"><span class="link-dot"></span>Video</a>
+      <a href="/visuals/"><span class="link-dot"></span>Visuals</a>
+      <a href="/blog/"><span class="link-dot"></span>Blog</a>
+      <a href="/resources/"><span class="link-dot"></span>Resources</a>
+      <a href="/about/"><span class="link-dot"></span>About</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ══ HERO BANNER ══ -->
+<!-- temp placeholder hero image — swap for your own key art -->
+<section class="hero hero--tall">
+  <img
+    class="hero-bg"
+    src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/audio/bscl-album/BS&CL%20Album%20-%20Hero%20Image%20v01.jpg"
+    alt="Between The Stars And City Lights"
+  >
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <div class="hero-rule"></div>
+    <span class="hero-label">Between The Stars And City Lights</span>
+  </div>
+</section>
+
+<!-- ══ MAIN ══ -->
+<main class="project-page-container">
+
+<!-- ── MUSIC VIDEOS ── -->
+  <div class="section-header">
+    <span class="dot">●</span>
+    <h2>Music Videos</h2>
+  </div>
+
+  <p class="intro-text" style="text-align:left; margin:0 0 2.2rem; max-width:100%;">
+Pre-story of the album begins here. Two singles - <strong>Last Summer Cruises</strong> and <strong>Winterscapes</strong> came out to give a little overview of the album's overall tone and atmosphere. Each video utilises various creative techniques and provides small fragments of the memories that shaped the full album. 
+  </p>
+
+  <div class="video-grid" id="videoGrid">
+
+    <!-- Video 1 — Last Summer Cruises -->
+    <div class="video-grid-item" data-video-id="XrxGyaA0634" data-thumb="https://picsum.photos/id/1011/1280/720">
+      <div class="video-frame">
+        <img class="video-thumb" src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/selected-projects/Last%20Summer%20Cruises%20-%20Thumbnail%20(Clean).jpg" alt="Last Summer Cruises thumbnail">
+        <div class="video-thumb-overlay">
+          <button class="video-play-btn" aria-label="Play video">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="yt-player-host"></div>
+        <div class="video-hover-catcher"></div>
+        <div class="video-controls">
+          <button class="vc-btn play-btn" aria-label="Play / Pause">
+            <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <div class="player-track">
+            <div class="player-progress-wrap"><div class="player-progress-fill"></div></div>
+            <span class="player-time">0:00 / 0:00</span>
+          </div>
+          <button class="vc-btn vc-mute" aria-label="Mute / Unmute">
+            <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12z"/></svg>
+            <svg class="icon-vol-off" viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.42.05-.63zM19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
+          </button>
+          <input type="range" class="vc-volume" min="0" max="100" value="80" aria-label="Volume">
+          <button class="vc-btn vc-fullscreen" aria-label="Enter fullscreen">
+            <svg class="icon-expand" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+            <svg class="icon-collapse" viewBox="0 0 24 24" style="display:none"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="video-grid-caption">Last Summer Cruises<span>Released 27 June 2025</span></div>
+    </div>
+
+    <!-- Video 2 — Winterscapes -->
+    <div class="video-grid-item" data-video-id="FKBQFZH_RI0" data-thumb="https://picsum.photos/id/1018/1280/720">
+      <div class="video-frame">
+        <img class="video-thumb" src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/selected-projects/Winterscapes%20-%20Thumbnail%20(Clean).jpg" alt="Winterscapes thumbnail">
+        <div class="video-thumb-overlay">
+          <button class="video-play-btn" aria-label="Play video">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="yt-player-host"></div>
+        <div class="video-hover-catcher"></div>
+        <div class="video-controls">
+          <button class="vc-btn play-btn" aria-label="Play / Pause">
+            <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <div class="player-track">
+            <div class="player-progress-wrap"><div class="player-progress-fill"></div></div>
+            <span class="player-time">0:00 / 0:00</span>
+          </div>
+          <button class="vc-btn vc-mute" aria-label="Mute / Unmute">
+            <svg class="icon-vol-on" viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12z"/></svg>
+            <svg class="icon-vol-off" viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.42.05-.63zM19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>
+          </button>
+          <input type="range" class="vc-volume" min="0" max="100" value="80" aria-label="Volume">
+          <button class="vc-btn vc-fullscreen" aria-label="Enter fullscreen">
+            <svg class="icon-expand" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+            <svg class="icon-collapse" viewBox="0 0 24 24" style="display:none"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="video-grid-caption">Winterscapes<span>Released 7 January 2026</span></div>
+    </div>
+
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ── CREDITS + DESCRIPTION ── -->
+  <div class="tool-card">
+    <h2 class="project-subheader project-subheader--boxed">Between The Stars And City Lights</h2>
+    <div class="credit-list">
+      <p class="credit-line"><em>Composed and Mixed by:</em>Kirill Zeynalov</p>
+      <p class="credit-line"><em>Genre:</em>Ambient, Hybrid, Cinematic, Post-Rock</p>
+      <p class="credit-line"><em>Release Date:</em>19.04.2026</p>
+    </div>
+    <p class="project-desc">
+      This album is about my childhood. It's a collection of memories - quiet mornings, places I remember, and moments that stayed with me over the years. A lot of this music comes from that time - from being young, from family, from small things that felt big back then. Some of it is clear, some of it is blurred, like memory usually is.
+      <br><br>
+      This album is my way of going back for a moment and remembering everything that made me who I am.
+    </p>
+  </div>
+
+  <div class="section-divider"></div>
+ 
+  <!-- ── TRACKLIST ── -->
+  <div class="section-header">
+    <span class="dot">●</span>
+    <h2>Tracklist</h2>
+  </div>
+
+  <ol class="tracklist-plain">
+    <li><span class="track-num">01</span>Morning, Grandma!</li>
+    <li><span class="track-num">02</span>Those Trees Still Remember Us Young</li>
+    <li><span class="track-num">03</span>Last Summer Cruises</li>
+    <li><span class="track-num">04</span>The Town That Forgot My Name</li>
+    <li><span class="track-num">05</span>The Ocean Of Changes</li>
+    <li><span class="track-num">06</span>Where The Sun Rises Again</li>
+    <li><span class="track-num">07</span>Endless Roads Ahead</li>
+    <li><span class="track-num">08</span>A Light I Didn't Know</li>
+    <li><span class="track-num">09</span>Winterscapes</li>
+    <li><span class="track-num">10</span>(After) The Last Goodbye</li>
+  </ol>
+
+  <div class="section-divider"></div>
+
+  <!-- ── LISTEN HERE ── -->
+  <div class="section-header section-header--center">
+    <h2>Listen Here</h2>
+  </div>
+
+  <div class="stream-buttons">
+
+    <!-- Spotify -->
+    <a class="stream-btn" href="https://open.spotify.com/album/3696uqpAiFKxOix6oV2MsA?si=TytAhxB9TeWSDh9GqjsoZA" target="_blank" rel="noopener" aria-label="Spotify">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/01%20-%20Spotify%20(Clean).png" alt="Spotify">
+    </a>
+
+    <!-- Apple Music -->
+    <a class="stream-btn" href="https://music.apple.com/gb/album/between-the-stars-and-city-lights/1892046953" target="_blank" rel="noopener" aria-label="Apple Music">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/02%20-%20Apple%20(Clean).png" alt="Apple Music">
+    </a>
+
+    <!-- YouTube Music -->
+    <a class="stream-btn" href="https://music.youtube.com/playlist?list=OLAK5uy_nEcDhf5sBb20ee1QXs7Tnpzv5a1lg5gwQ" target="_blank" rel="noopener" aria-label="YouTube Music">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/03%20-%20Youtube%20(Clean).png" alt="Youtube Music">
+    </a>
+
+    <!-- Amazon Music -->
+    <a class="stream-btn" href="https://music.amazon.co.uk/albums/B0GWMZKW46" target="_blank" rel="noopener" aria-label="Amazon Music">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/04%20-%20Amazon%20(Clean).png" alt="Amazon Music">
+    </a>
+
+    <!-- Tidal -->
+    <a class="stream-btn" href="https://tidal.com/album/514535304" target="_blank" rel="noopener" aria-label="Tidal">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/07%20-%20Tidal%20(Clean).png" alt="Tidal">
+    </a>
+
+    <!-- VK -->
+    <a class="stream-btn" href="https://vk.com/madeby.kirill" target="_blank" rel="noopener" aria-label="VK">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/05%20-%20VK%20(Clean).png" alt="VK">
+    </a>
+
+    <!-- Bandcamp -->
+    <a class="stream-btn" href="https://kirillzeynalov.bandcamp.com/album/between-the-stars-and-city-lights" target="_blank" rel="noopener" aria-label="Bandcamp">
+      <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/06%20-%20Bandcamp%20(Clean)_v2.png" alt="Bandcamp">
+    </a>
+
+  </div>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+
+  <div class="footer-social">
+    <a href="https://www.youtube.com/@kirillzeynalov" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.instagram.com/madebykirill" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@madebykirill" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://vk.com/madeby.kirill" target="_blank" rel="noopener">VK</a>
+  </div>
+
+  <div class="footer-cta">
+    <h3>Let's Create Something Together</h3>
+    <a href="mailto:hello.madebykirill@gmail.com">hello.madebykirill@gmail.com</a>
+  </div>
+
+  <div class="footer-copy" id="footer-copy"></div>
+
+</footer>
+
+</div><!-- end .page-wrap -->
+
+<!-- YouTube IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+  (function() {
+    var year = new Date().getFullYear();
+    document.getElementById('footer-copy').innerHTML =
+      '\u00A9 ' + year + ' | All rights reserved<br>Kirill Zeynalov | Digital Content Creation';
+  })();
+
+  /* ── Mobile menu ── */
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var menuBackdrop = document.getElementById('menuBackdrop');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', function() {
+    mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  menuBackdrop.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
+
+  /* ═══════════════════════════════════════════════
+     VIDEO GRID — each .video-grid-item is an
+     independent instance of the same custom-controlled
+     YouTube player used elsewhere on the site. Scoped
+     via querySelector (no shared global IDs needed),
+     so any number of these can live on one page.
+     ═══════════════════════════════════════════════ */
+  var ytApiReady = false;
+  var pendingInits = [];
+
+  window.onYouTubeIframeAPIReady = function() {
+    ytApiReady = true;
+    pendingInits.forEach(function(fn) { fn(); });
+    pendingInits = [];
+  };
+
+  function formatTime(seconds) {
+    if (isNaN(seconds) || seconds === Infinity || seconds < 0) return '0:00';
+    var m = Math.floor(seconds / 60);
+    var s = Math.floor(seconds % 60);
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function isFullscreen(el) {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement ||
+              document.mozFullScreenElement || document.msFullscreenElement);
+  }
+
+  function setupVideoGridItem(container) {
+    var videoId = container.getAttribute('data-video-id');
+    var frame = container.querySelector('.video-frame');
+    var thumbOverlay = frame.querySelector('.video-thumb-overlay');
+    var ytHost = frame.querySelector('.yt-player-host');
+    var hoverCatcher = frame.querySelector('.video-hover-catcher');
+    var controls = frame.querySelector('.video-controls');
+    var playPauseBtn = controls.querySelector('.play-btn');
+    var progressWrap = controls.querySelector('.player-progress-wrap');
+    var progressFill = controls.querySelector('.player-progress-fill');
+    var timeLabel = controls.querySelector('.player-time');
+    var muteBtn = controls.querySelector('.vc-mute');
+    var volumeSlider = controls.querySelector('.vc-volume');
+    var fullscreenBtn = controls.querySelector('.vc-fullscreen');
+    var iconExpand = fullscreenBtn.querySelector('.icon-expand');
+    var iconCollapse = fullscreenBtn.querySelector('.icon-collapse');
+    var iconPlay = playPauseBtn.querySelector('.icon-play');
+    var iconPause = playPauseBtn.querySelector('.icon-pause');
+
+    var player = null;
+    var playerReady = false;
+    var progressTimer = null;
+    var hideTimer = null;
+
+    function startProgress() {
+      stopProgress();
+      progressTimer = setInterval(function() {
+        if (!player || typeof player.getCurrentTime !== 'function') return;
+        var cur = player.getCurrentTime();
+        var dur = player.getDuration();
+        if (dur > 0) progressFill.style.width = ((cur / dur) * 100) + '%';
+        timeLabel.textContent = formatTime(cur) + ' / ' + formatTime(dur);
+      }, 250);
+    }
+
+    function stopProgress() {
+      if (progressTimer) { clearInterval(progressTimer); progressTimer = null; }
+    }
+
+    function showControls() {
+      frame.classList.add('show-controls');
+      frame.classList.remove('hide-cursor');
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(function() {
+        frame.classList.remove('show-controls');
+        if (isFullscreen()) frame.classList.add('hide-cursor');
+      }, 2500);
+    }
+
+    function hideControlsNow() {
+      clearTimeout(hideTimer);
+      frame.classList.remove('show-controls');
+      frame.classList.remove('hide-cursor');
+    }
+
+    function initPlayer() {
+      player = new YT.Player(ytHost, {
+        videoId: videoId,
+        playerVars: { controls: 0, rel: 0, modestbranding: 1, iv_load_policy: 3, playsinline: 1 },
+        events: {
+          onReady: function() {
+            playerReady = true;
+            player.setVolume(Number(volumeSlider.value));
+          },
+          onStateChange: function(e) {
+            if (e.data === YT.PlayerState.PLAYING) {
+              iconPlay.style.display = 'none';
+              iconPause.style.display = 'block';
+              startProgress();
+            } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+              iconPlay.style.display = 'block';
+              iconPause.style.display = 'none';
+              stopProgress();
+            }
+          }
+        }
+      });
+    }
+
+    function activate() {
+      frame.classList.add('is-active');
+      showControls();
+      if (playerReady && player) {
+        player.playVideo();
+      } else {
+        var tries = 0;
+        var wait = setInterval(function() {
+          tries++;
+          if (playerReady && player) { player.playVideo(); clearInterval(wait); }
+          else if (tries > 40) { clearInterval(wait); }
+        }, 100);
+      }
+    }
+
+    function togglePlayPause() {
+      if (!player || typeof player.getPlayerState !== 'function') { activate(); return; }
+      var state = player.getPlayerState();
+      if (state === YT.PlayerState.PLAYING) player.pauseVideo();
+      else if (!frame.classList.contains('is-active')) activate();
+      else player.playVideo();
+    }
+
+    if (ytApiReady) initPlayer();
+    else pendingInits.push(initPlayer);
+
+    thumbOverlay.addEventListener('click', activate);
+    playPauseBtn.addEventListener('click', togglePlayPause);
+    hoverCatcher.addEventListener('click', togglePlayPause);
+
+    progressWrap.addEventListener('click', function(e) {
+      if (!player || typeof player.getDuration !== 'function') return;
+      var dur = player.getDuration();
+      if (!dur) return;
+      var rect = progressWrap.getBoundingClientRect();
+      var pct = (e.clientX - rect.left) / rect.width;
+      player.seekTo(pct * dur, true);
+    });
+
+    muteBtn.addEventListener('click', function() {
+      if (!player) return;
+      if (player.isMuted && player.isMuted()) {
+        player.unMute();
+        muteBtn.classList.remove('is-muted');
+      } else {
+        player.mute();
+        muteBtn.classList.add('is-muted');
+      }
+    });
+
+    volumeSlider.addEventListener('input', function() {
+      if (!player || typeof player.setVolume !== 'function') return;
+      var vol = Number(volumeSlider.value);
+      player.setVolume(vol);
+      muteBtn.classList.toggle('is-muted', vol === 0);
+    });
+
+    fullscreenBtn.addEventListener('click', function() {
+      if (isFullscreen()) {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+        else if (document.msExitFullscreen) document.msExitFullscreen();
+      } else {
+        if (frame.requestFullscreen) frame.requestFullscreen();
+        else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
+        else if (frame.mozRequestFullScreen) frame.mozRequestFullScreen();
+        else if (frame.msRequestFullscreen) frame.msRequestFullscreen();
+      }
+    });
+
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach(function(evt) {
+      document.addEventListener(evt, function() {
+        var fs = isFullscreen();
+        iconExpand.style.display = fs ? 'none' : 'block';
+        iconCollapse.style.display = fs ? 'block' : 'none';
+        fullscreenBtn.setAttribute('aria-label', fs ? 'Exit fullscreen' : 'Enter fullscreen');
+        showControls();
+      });
+    });
+
+    frame.addEventListener('mousemove', showControls);
+    frame.addEventListener('mouseenter', showControls);
+    frame.addEventListener('mouseleave', hideControlsNow);
+    controls.addEventListener('mousemove', showControls);
+    hoverCatcher.addEventListener('mousemove', showControls);
+  }
+
+  document.querySelectorAll('.video-grid-item').forEach(setupVideoGridItem);
+</script>
+
+</body>
+</html>
