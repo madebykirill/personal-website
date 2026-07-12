@@ -1912,8 +1912,8 @@ footer {
 }
 
 .home-hero-text-block {
-  max-width: 100%;
-  max-width: 460px;
+  max-width: 80%;
+  max-width: 360px;
   text-align: left;
 }
 
