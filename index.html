@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kirill Zeynalov - Digital Content Creation</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+<link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Kirill Zeynalov" />
+<link rel="manifest" href="/favicon/site.webmanifest" />
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+
+    <nav class="nav-left">
+      <a href="/audio/">Audio</a>
+      <a href="/video/">Video</a>
+      <a href="/visuals/">Visuals</a>
+    </nav>
+
+    <div class="logo-wrap">
+      <a href="/">
+        <img
+          src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/00-misc/KZ%20-%20Logotype%20-%20Large.png"
+          alt="Kirill Zeynalov"
+          onerror="this.style.display='none'"
+        >
+      </a>
+    </div>
+
+    <nav class="nav-right">
+      <a href="/blog/">Blog</a>
+      <a href="/resources/">Resources</a>
+      <a href="/about/">About</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-backdrop" id="menuBackdrop"></div>
+  <div class="mobile-menu-panel">
+    <nav class="mobile-menu-links">
+      <a href="/audio/"><span class="link-dot"></span>Audio</a>
+      <a href="/video/"><span class="link-dot"></span>Video</a>
+      <a href="/visuals/"><span class="link-dot"></span>Visuals</a>
+      <a href="/blog/"><span class="link-dot"></span>Blog</a>
+      <a href="/resources/"><span class="link-dot"></span>Resources</a>
+      <a href="/about/"><span class="link-dot"></span>About</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ══ VIDEO HERO ══ -->
+<section class="home-hero" id="heroSection">
+
+  <video
+    class="home-hero-video"
+    src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/KZ%20-%20Website%20-%20Landing%20Page.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+  ></video>
+
+  <div class="home-hero-overlay"></div>
+
+  <div class="home-hero-content">
+  <div class="home-hero-text-block">
+    <div class="home-hero-rule"></div>
+    <h1 class="home-hero-h1">Ideas. Stories. Worlds.</h1>
+    <p class="home-hero-sub">
+      Made By Kirill
+    </p>
+  </div>
+</div>
+
+  <button class="home-scroll-arrow" id="scrollArrow" aria-label="Scroll to content">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+
+</section>
+
+<!-- ══ MAIN ══ -->
+<main class="home-main" id="mainContent">
+
+  <!-- ── NEWS ── -->
+  <section class="home-section">
+
+    <div class="section-header">
+      <span class="dot">•</span>
+      <h2>News</h2>
+    </div>
+
+    <div class="news-image-wrap">
+      <img
+        src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/updates/BSCL%20-%20Album%20Banner.jpg"
+        alt="Between The Stars And City Lights — New Album"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="section-header section-header--center">
+      <h2>Listen Here</h2>
+    </div>
+
+    <div class="stream-buttons">
+
+  <!-- Spotify -->
+  <a class="stream-btn" href="https://open.spotify.com/album/3696uqpAiFKxOix6oV2MsA?si=TytAhxB9TeWSDh9GqjsoZA" target="_blank" rel="noopener" aria-label="Spotify">
+    <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/01%20-%20Spotify%20(Clean).png" alt="Spotify">
+  </a>
+
+  <!-- Apple Music -->
+  <a class="stream-btn" href="https://music.apple.com/gb/album/between-the-stars-and-city-lights/1892046953" target="_blank" rel="noopener" aria-label="Apple Music">
+    <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/02%20-%20Apple%20(Clean).png" alt="Apple Music">
+  </a>
+
+  <!-- YouTube Music -->
+  <a class="stream-btn" href="https://music.youtube.com/playlist?list=OLAK5uy_nEcDhf5sBb20ee1QXs7Tnpzv5a1lg5gwQ" target="_blank" rel="noopener" aria-label="YouTube Music">
+    <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/03%20-%20Youtube%20(Clean).png" alt="Youtube Music">
+  </a>
+
+  <!-- Amazon Music -->
+  <a class="stream-btn" href="https://music.amazon.co.uk/albums/B0GWMZKW46" target="_blank" rel="noopener" aria-label="Amazon Music">
+    <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/04%20-%20Amazon%20(Clean).png" alt="Amazon Music">
+  </a>
+
+  <!-- Tidal -->
+  <a class="stream-btn" href="https://tidal.com/album/514535304" target="_blank" rel="noopener" aria-label="Tidal">
+    <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/07%20-%20Tidal%20(Clean).png" alt="Tidal">
+  </a>
+
+  <!-- VK -->
+  <a class="stream-btn" href="https://vk.com/madeby.kirill" target="_blank" rel="noopener" aria-label="VK">
+    <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/05%20-%20VK%20(Clean).png" alt="VK">
+  </a>
+
+  <!-- Bandcamp -->
+  <a class="stream-btn" href="https://kirillzeynalov.bandcamp.com/album/between-the-stars-and-city-lights" target="_blank" rel="noopener" aria-label="Bandcamp">
+    <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/icons-streaming/06%20-%20Bandcamp%20(Clean)_v2.png" alt="Bandcamp">
+  </a>
+
+</div>
+
+  </section>
+
+  <div class="home-section-divider"></div>
+
+  <!-- ── WHAT I DO ── -->
+  <section class="home-section">
+
+    <div class="section-header">
+      <span class="dot">•</span>
+      <h2>What I Do</h2>
+    </div>
+
+    <div class="home-cards-grid">
+
+      <a class="wid-card" href="/audio/">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do/01%20-%20Music%20Production%20(Clean).jpg" alt="Music Production" loading="lazy">
+        <div class="wid-label">
+          <span class="wid-icon"><img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do-overlay-icons/KZ%20-%20Icons%20Transparent%20-%20Audio%20%26%20Music.png" alt=""></span>
+          <span class="wid-name">Music Production</span>
+        </div>
+        <div class="wid-overlay"><span class="wid-btn">Learn More</span></div>
+      </a>
+
+      <a class="wid-card" href="/video/">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do/03%20-%20Videography%20(Clean).jpg" alt="Videography" loading="lazy">
+        <div class="wid-label">
+          <span class="wid-icon"><img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do-overlay-icons/KZ%20-%20Icons%20Transparent%20-%20Video%20%26%20Film.png" alt=""></span>
+          <span class="wid-name">Videography</span>
+        </div>
+        <div class="wid-overlay"><span class="wid-btn">Learn More</span></div>
+      </a>
+
+      <a class="wid-card" href="/visuals/">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do/05%20-%20Motion%20Design%20(Clean).jpg" alt="Motion Design" loading="lazy">
+        <div class="wid-label">
+          <span class="wid-icon"><img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do-overlay-icons/KZ%20-%20Icons%20Transparent%20-%20Motion%20Design.png" alt=""></span>
+          <span class="wid-name">Motion Design</span>
+        </div>
+        <div class="wid-overlay"><span class="wid-btn">Learn More</span></div>
+      </a>
+
+      <a class="wid-card" href="/audio/">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do/02%20-%20Sound%20Design%20(Clean).jpg" alt="Sound Design" loading="lazy">
+        <div class="wid-label">
+          <span class="wid-icon"><img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do-overlay-icons/KZ%20-%20Icons%20Transparent%20-%20SFX.png" alt=""></span>
+          <span class="wid-name">Sound Design</span>
+        </div>
+        <div class="wid-overlay"><span class="wid-btn">Learn More</span></div>
+      </a>
+
+      <a class="wid-card" href="/video/">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do/04%20-%20Post%20Production%20(Clean).jpg" alt="Post-Production" loading="lazy">
+        <div class="wid-label">
+          <span class="wid-icon"><img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do-overlay-icons/KZ%20-%20Icons%20Transparent%20-%20Post-Production.png" alt=""></span>
+          <span class="wid-name">Post-Production</span>
+        </div>
+        <div class="wid-overlay"><span class="wid-btn">Learn More</span></div>
+      </a>
+
+      <a class="wid-card" href="/visuals/">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do/06%20-%203D%20(Clean).jpg" alt="3D" loading="lazy">
+        <div class="wid-label">
+          <span class="wid-icon"><img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/what-i-do-overlay-icons/KZ%20-%20Icons%20Transparent%20-%203D.png" alt=""></span>
+          <span class="wid-name">3D</span>
+        </div>
+        <div class="wid-overlay"><span class="wid-btn">Learn More</span></div>
+      </a>
+
+    </div>
+    
+  </section>
+
+  <div class="home-section-divider"></div>
+
+  <!-- ── SELECTED WORK ── -->
+  <section class="home-section">
+
+    <div class="section-header">
+      <span class="dot">•</span>
+      <h2>Selected Work</h2>
+    </div>
+
+    <div class="work-grid">
+
+      <a class="work-item" href="/visuals/balance-zero" aria-label="Selected work 1">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/visuals/balance-zero/Balance%20ZERO%20-%20Thumbnail%20(Laurels).jpg" alt="Selected Work 1" loading="lazy">
+        <div class="work-item-overlay"><span class="work-item-title">Balance: ZERO</span></div>
+      </a>
+
+      <a class="work-item" href="/audio/bscl-album" aria-label="Selected work 2">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/selected-projects/BS%26CL%20-%20Thumbnail%20(Clean).jpg" alt="Selected Work 2" loading="lazy">
+        <div class="work-item-overlay"><span class="work-item-title">Between The Stars And City Lights</span></div>
+      </a>
+
+      <a class="work-item" href="/audio/bscl-album" aria-label="Selected work 3">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/selected-projects/Winterscapes%20-%20Thumbnail%20(Clean).jpg" alt="Selected Work 3" loading="lazy">
+        <div class="work-item-overlay"><span class="work-item-title">Winterscapes</span></div>
+      </a>
+
+      <a class="work-item" href="/hypermode" aria-label="Selected work 4">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/audio/hypermode/Hypermode%20-%20Logo%20for%20SM.jpg" alt="Selected Work 4" loading="lazy">
+        <div class="work-item-overlay"><span class="work-item-title">Hypermode</span></div>
+      </a>
+
+      <a class="work-item" href="visuals/youlend-promo" aria-label="Selected work 5">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/selected-projects/YouLend%20-%20Thumbnail%20(Clean).jpg" alt="Selected Work 5" loading="lazy">
+        <div class="work-item-overlay"><span class="work-item-title">Youlend Promo</span></div>
+      </a>
+
+      <a class="work-item" href="video/the-chase" aria-label="Selected work 6">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/selected-projects/The%20Chase%20-%20Thumbnail%20(Clean).jpg" alt="Selected Work 6" loading="lazy">
+        <div class="work-item-overlay"><span class="work-item-title">The Chase</span></div>
+      </a>
+
+      <a class="work-item" href="/video/echoes-of-highlands/" aria-label="Selected work 7">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/selected-projects/Ben%20Nevis%20-%20Main%20Thumbnail%20-%20Clean.jpg" alt="Selected Work 7" loading="lazy">
+        <div class="work-item-overlay"><span class="work-item-title">Echoes Of Highlands</span></div>
+      </a>
+
+      <a class="work-item" href="visuals/realise-segmentation" aria-label="Selected work 8">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/visuals/realise-segmentation/Realise%20-%20Thumbnail%20(Clean).jpg" alt="Selected Work 8" loading="lazy">
+        <div class="work-item-overlay"><span class="work-item-title">Realise Segmentation</span></div>
+      </a>
+
+      <a class="work-item" href="video/grey-seals-of-norfolk" aria-label="Selected work 9">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/home/selected-projects/Seals%20-%20Thumbnail%20(Clean).jpg" alt="Selected Work 9" loading="lazy">
+        <div class="work-item-overlay"><span class="work-item-title">Grey Seals Of Norfolk</span></div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── NAVIGATE BUTTONS ── -->
+  <div class="home-nav-divider"></div>
+
+  <div class="home-nav-section">
+    <div class="home-nav-buttons">
+      <a class="dev-btn" href="/audio/">Audio</a>
+      <a class="dev-btn" href="/video/">Video</a>
+      <a class="dev-btn" href="/visuals/">Visuals</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+
+  <div class="footer-social">
+    <a href="https://www.youtube.com/@kirillzeynalov" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.instagram.com/madebykirill" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@madebykirill" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://vk.com/madeby.kirill" target="_blank" rel="noopener">VK</a>
+  </div>
+
+  <div class="footer-cta">
+    <h3>Let's Create Something Together</h3>
+    <a href="mailto:hello.madebykirill@gmail.com">hello.madebykirill@gmail.com</a>
+  </div>
+
+  <div class="footer-copy" id="footer-copy"></div>
+
+</footer>
+
+</div><!-- end .page-wrap -->
+
+<script>
+(function () {
+
+  /* ── Footer year ── */
+  document.getElementById('footer-copy').innerHTML =
+    '\u00A9 ' + new Date().getFullYear() + ' | All rights reserved<br>Kirill Zeynalov | Digital Content Creation';
+
+  /* ── Mobile menu ── */
+  var hamburger    = document.getElementById('hamburger');
+  var mobileMenu   = document.getElementById('mobileMenu');
+  var menuBackdrop = document.getElementById('menuBackdrop');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', function () {
+    mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  menuBackdrop.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+  /* ── Scroll arrow ── */
+  document.getElementById('scrollArrow').addEventListener('click', function () {
+    document.getElementById('mainContent').scrollIntoView({ behavior: 'smooth' });
+  });
+
+})();
+</script>
+
+</body>
+</html>
