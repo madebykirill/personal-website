@@ -256,6 +256,7 @@ nav a.active:hover { color: var(--grey); transform: scale(0.88); }
   text-transform: uppercase;
   color: var(--white);
   text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+  text-align: center;
 }
 
 .hero-rule {
