@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chord & Progression Finder - Kirill Zeynalov</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+<link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Kirill Zeynalov" />
+<link rel="manifest" href="/favicon/site.webmanifest" />
+<meta name="description" content="Explore diatonic chords, genre-specific progressions, and compatible keys for modulation. Tap any chord or progression to hear it or download as MIDI.">
+</head>
+<body>
+<div class="page-wrap">
+
+<header>
+  <div class="header-inner">
+    <nav class="nav-left">
+      <a href="/audio/">Audio</a>
+      <a href="/video/">Video</a>
+      <a href="/visuals/">Visuals</a>
+    </nav>
+    <div class="logo-wrap">
+      <a href="/">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/00-misc/KZ%20-%20Logotype%20-%20Large.png" alt="Kirill Zeynalov" onerror="this.style.display='none'">
+      </a>
+    </div>
+    <nav class="nav-right">
+      <a href="/blog/">Blog</a>
+      <a href="/resources/">Resources</a>
+      <a href="/about/">About</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-backdrop" id="menuBackdrop"></div>
+  <div class="mobile-menu-panel">
+    <nav class="mobile-menu-links">
+      <a href="/audio/"><span class="link-dot"></span>Audio</a>
+      <a href="/video/"><span class="link-dot"></span>Video</a>
+      <a href="/visuals/"><span class="link-dot"></span>Visuals</a>
+      <a href="/blog/"><span class="link-dot"></span>Blog</a>
+      <a href="/resources/" class="active"><span class="link-dot"></span>Resources</a>
+      <a href="/about/"><span class="link-dot"></span>About</a>
+    </nav>
+  </div>
+</div>
+
+<section class="hero">
+  <img class="hero-bg" src="https://images.pexels.com/photos/10222326/pexels-photo-10222326.jpeg" alt="Chord & Progression Finder">
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <div class="hero-rule"></div>
+    <span class="hero-label">Chord &amp; Progression Finder</span>
+  </div>
+</section>
+
+<main>
+  <p class="intro-text">
+    Pick a root note and scale to explore diatonic chords, genre-specific progressions, and compatible keys for modulation. Tap any chord or progression to preview audio or download as MIDI.
+  </p>
+
+  <div class="tool-card chord-finder-card">
+    
+    <div class="controls-row">
+      <div class="col">
+        <label class="field-label" for="root">Root note</label>
+        <div class="tc-select-wrap">
+          <select id="root" class="tc-select">
+            <option>C</option><option>C#/Db</option><option>D</option><option>D#/Eb</option>
+            <option>E</option><option>F</option><option>F#/Gb</option><option>G</option>
+            <option>G#/Ab</option><option>A</option><option>A#/Bb</option><option>B</option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <label class="field-label" for="mode">Scale / Mode</label>
+        <div class="tc-select-wrap">
+          <select id="mode" class="tc-select">
+            <option value="major">Major (Ionian)</option>
+            <option value="minor">Natural minor (Aeolian)</option>
+            <option value="dorian">Dorian</option>
+            <option value="phrygian">Phrygian</option>
+            <option value="lydian">Lydian</option>
+            <option value="mixolydian">Mixolydian</option>
+            <option value="locrian">Locrian</option>
+            <option value="harmonic_minor">Harmonic minor</option>
+            <option value="melodic_minor">Melodic minor</option>
+            <option value="pentatonic_major">Pentatonic major</option>
+            <option value="pentatonic_minor">Pentatonic minor</option>
+            <option value="blues">Blues</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-bar" id="status-bar">
+      <div class="status-dot loading" id="status-dot"></div>
+      <span id="status-text">Loading piano samples…</span>
+    </div>
+
+    <section class="section">
+      <div class="section-label">Scale</div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot root-dot"></div>Root note</div>
+        <div class="legend-item"><div class="legend-dot scale-dot"></div>Scale note</div>
+        <div class="legend-item"><div class="legend-dot playing-dot"></div>Playing</div>
+      </div>
+      <div class="piano-scroll"><div class="piano" id="piano"></div></div>
+      <div class="notes-row" id="scale-notes"></div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="section">
+      <div class="section-label">Diatonic chords — tap to hear</div>
+      <div class="chords-grid" id="chords-grid"></div>
+      <div class="notes-row" id="chord-notes"></div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="section">
+      <div class="section-label">Progressions by genre — tap to hear</div>
+      <div class="genre-tabs-wrap">
+        <div class="genre-tabs" id="genre-tabs"></div>
+      </div>
+      <div class="prog-grid" id="progressions"></div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="section">
+      <div class="section-label">Compatible keys for modulation</div>
+      <div class="compat-row" id="compat"></div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-social">
+    <a href="https://www.youtube.com/@kirillzeynalov" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.instagram.com/madebykirill" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@madebykirill" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://vk.com/madeby.kirill" target="_blank" rel="noopener">VK</a>
+  </div>
+  <div class="footer-cta">
+    <h3>Let's Create Something Together</h3>
+    <a href="mailto:hello.madebykirill@gmail.com">hello.madebykirill@gmail.com</a>
+  </div>
+  <div class="footer-copy" id="footer-copy"></div>
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/soundfont-player@0.12.0/dist/soundfont-player.min.js"></script>
+<script>
+  (function() {
+    document.getElementById('footer-copy').innerHTML = '\u00A9 ' + new Date().getFullYear() + ' | All rights reserved<br>Kirill Zeynalov | Digital Content Creation';
+  })();
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuBackdrop = document.getElementById('menuBackdrop');
+  function openMenu() { hamburger.classList.add('open'); mobileMenu.classList.add('open'); }
+  function closeMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+  hamburger.addEventListener('click', () => mobileMenu.classList.contains('open') ? closeMenu() : openMenu());
+  menuBackdrop.addEventListener('click', closeMenu);
+
+  /* MIDI Generator */
+  function writeVariableLength(val) {
+    let buffer = [];
+    let v = val & 0x7F;
+    while (val >>= 7) {
+      v <<= 8;
+      v |= (val & 0x7F) | 0x80;
+    }
+    while (true) {
+      buffer.push(v & 0xFF);
+      if (v & 0x80) v >>= 8; else break;
+    }
+    return buffer;
+  }
+
+  function generateMidi(chordEvents, ticksPerQuarter = 480) {
+    let trackBytes = [
+      0x00, 0xFF, 0x51, 0x03, 0x07, 0xA1, 0x20, // Tempo: 120 BPM
+      0x00, 0xFF, 0x04, 0x0A, ...Array.from("Chord Track").map(c => c.charCodeAt(0))
+    ];
+
+    chordEvents.forEach(evt => {
+      let notes = evt.notes;
+      let dur = evt.durationTicks || 480;
+
+      notes.forEach((note, i) => {
+        let delta = (i === 0) ? 0 : 0;
+        trackBytes.push(...writeVariableLength(delta), 0x90, note, 0x64);
+      });
+
+      notes.forEach((note, i) => {
+        let delta = (i === 0) ? dur : 0;
+        trackBytes.push(...writeVariableLength(delta), 0x80, note, 0x00);
+      });
+    });
+
+    trackBytes.push(0x00, 0xFF, 0x2F, 0x00);
+
+    const header = [
+      0x4D, 0x54, 0x68, 0x64,
+      0x00, 0x00, 0x00, 0x06,
+      0x00, 0x01,
+      0x00, 0x01,
+      (ticksPerQuarter >> 8) & 0xFF, ticksPerQuarter & 0xFF
+    ];
+
+    const trackHeader = [
+      0x4D, 0x54, 0x72, 0x6B,
+      (trackBytes.length >> 24) & 0xFF,
+      (trackBytes.length >> 16) & 0xFF,
+      (trackBytes.length >> 8) & 0xFF,
+      trackBytes.length & 0xFF
+    ];
+
+    return new Uint8Array([...header, ...trackHeader, ...trackBytes]);
+  }
+
+  function downloadMidiFile(filename, midiUint8Array) {
+    const blob = new Blob([midiUint8Array], { type: 'audio/midi' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  /* Finder Engine */
+  const ALL_NOTES    = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+  const NOTE_DISPLAY = ['C','C#/Db','D','D#/Eb','E','F','F#/Gb','G','G#/Ab','A','A#/Bb','B'];
+  const BLACK_KEYS   = [1,3,6,8,10];
+
+  const SCALES = {
+    major:            {steps:[0,2,4,5,7,9,11], chords:['maj','min','min','maj','maj','min','dim'], name:'Major'},
+    minor:            {steps:[0,2,3,5,7,8,10],  chords:['min','dim','maj','min','min','maj','maj'], name:'Natural minor'},
+    dorian:           {steps:[0,2,3,5,7,9,10],  chords:['min','min','maj','maj','min','dim','maj'], name:'Dorian'},
+    phrygian:         {steps:[0,1,3,5,7,8,10],  chords:['min','maj','maj','min','dim','maj','min'], name:'Phrygian'},
+    lydian:           {steps:[0,2,4,6,7,9,11],  chords:['maj','maj','min','dim','maj','min','min'], name:'Lydian'},
+    mixolydian:       {steps:[0,2,4,5,7,9,10],  chords:['maj','min','dim','maj','min','min','maj'], name:'Mixolydian'},
+    locrian:          {steps:[0,1,3,5,6,8,10],  chords:['dim','maj','min','min','maj','maj','min'], name:'Locrian'},
+    harmonic_minor:   {steps:[0,2,3,5,7,8,11],  chords:['min','dim','aug','min','maj','maj','dim'], name:'Harmonic minor'},
+    melodic_minor:    {steps:[0,2,3,5,7,9,11],  chords:['min','min','aug','maj','maj','dim','dim'], name:'Melodic minor'},
+    pentatonic_major: {steps:[0,2,4,7,9],        chords:['maj','min','min','maj','min'],            name:'Pentatonic major'},
+    pentatonic_minor: {steps:[0,3,5,7,10],       chords:['min','maj','min','min','maj'],            name:'Pentatonic minor'},
+    blues:            {steps:[0,3,5,6,7,10],     chords:['7','min','dim','maj','7','min'],          name:'Blues'},
+  };
+
+  const CHORD_INTERVALS = {maj:[0,4,7],min:[0,3,7],dim:[0,3,6],aug:[0,4,8],'7':[0,4,7,10]};
+  const ROMAN       = ['I','II','III','IV','V','VI','VII'];
+  const ROMAN_LOWER = ['i','ii','iii','iv','v','vi','vii'];
+
+  const GENRES = [
+    {
+      id: 'cinematic', label: 'Cinematic', icon: '🎬',
+      progs: [
+        { name: 'Hero\'s journey',    mood: 'hopeful, epic',        pref:'major', nums:[0,4,5,3] },
+        { name: 'Wide open spaces',   mood: 'vast, triumphant',     pref:'major', nums:[0,2,3,0,4,0] },
+        { name: 'Nolan drift',        mood: 'tense, mysterious',    pref:'minor', nums:[0,2,5,3] },
+        { name: 'Dark resolve',       mood: 'brooding, determined', pref:'minor', nums:[0,6,3,4] },
+        { name: 'Emotional reveal',   mood: 'bittersweet',          pref:'both',  nums:[0,5,3,4] },
+        { name: 'End credits swell',  mood: 'reflective, final',    pref:'both',  nums:[0,3,4,5] },
+        { name: 'Submarine depth',    mood: 'claustrophobic, slow', pref:'minor', nums:[0,1,0,6] },
+        { name: 'Time dilation',      mood: 'hypnotic, steady',     pref:'both',  nums:[0,3,1,4] },
+        { name: 'Celestial voyage',   mood: 'ethereal, expansive',  pref:'major', nums:[0,3,5,3] },
+        { name: 'Tragic downfall',    mood: 'sorrowful, solemn',    pref:'minor', nums:[0,5,6,4] },
+        { name: 'Ancient kingdom',    mood: 'regal, historic',      pref:'both',  nums:[0,4,3,0] },
+        { name: 'Rising darkness',    mood: 'impending doom',       pref:'minor', nums:[0,1,3,4] },
+        { name: 'Noble sacrifice',    mood: 'valiant, touching',    pref:'major', nums:[0,5,3,4] },
+        { name: 'Outer orbit',        mood: 'suspension, space',    pref:'both',  nums:[0,2,4,3] },
+      ]
+    },
+    {
+      id: 'trailer', label: 'Trailer', icon: '🔥',
+      progs: [
+        { name: 'Hybrid riser',       mood: 'massive, escalating',  pref:'minor', nums:[0,6,3,7] },
+        { name: 'Drop moment',        mood: 'impactful, punchy',    pref:'minor', nums:[0,4,0,4] },
+        { name: 'Inception stomp',    mood: 'relentless, heavy',    pref:'minor', nums:[0,6,0,5] },
+        { name: 'Taiko march',        mood: 'brutal, ceremonial',   pref:'minor', nums:[0,2,3,0] },
+        { name: 'Epic four-chord',    mood: 'soaring, blockbuster', pref:'major', nums:[0,4,5,3] },
+        { name: 'Ominous creep',      mood: 'dread, anticipation',  pref:'both',  nums:[0,1,2,0] },
+        { name: 'Braam hit build',    mood: 'shattering, intense',  pref:'minor', nums:[0,6,1,0] },
+        { name: 'Cybernetic siege',   mood: 'futuristic, harsh',    pref:'minor', nums:[0,3,1,6] },
+        { name: 'Valhalla storm',     mood: 'viking, thunderous',   pref:'minor', nums:[0,6,4,3] },
+        { name: 'Blockbuster chorus', mood: 'huge, climax',         pref:'major', nums:[0,3,4,5] },
+        { name: 'Dark engine',        mood: 'pounding, driving',    pref:'minor', nums:[0,1,0,3] },
+        { name: 'Apex predator',      mood: 'relentless, grim',     pref:'minor', nums:[0,6,5,6] },
+        { name: 'Superhero suit-up',  mood: 'triumphant power',     pref:'major', nums:[0,4,1,3] },
+        { name: 'Final showdown',     mood: 'high-stakes tension',  pref:'both',  nums:[0,5,3,6] },
+      ]
+    },
+    {
+      id: 'pop', label: 'Pop', icon: '🎤',
+      progs: [
+        { name: 'Axis of awesome',    mood: 'bright, unstoppable',  pref:'major', nums:[0,4,5,3] },
+        { name: 'I-V-vi-IV',         mood: 'uplifting, radio-ready',pref:'major', nums:[0,4,5,3] },
+        { name: 'Rising verse',       mood: 'driving, momentum',    pref:'major', nums:[0,1,4,3] },
+        { name: 'Sad banger',         mood: 'danceable but hurt',   pref:'minor', nums:[0,6,3,4] },
+        { name: 'Falling minor',      mood: 'wistful, melodic',     pref:'minor', nums:[0,5,3,4] },
+        { name: 'Anthemic build',     mood: 'stadium, singalong',   pref:'both',  nums:[0,4,5,6] },
+        { name: 'Bedroom pop loop',   mood: 'lo-fi, intimate',      pref:'both',  nums:[0,3,4,3] },
+        { name: 'Doo-wop classic',    mood: 'nostalgic, sweet',     pref:'major', nums:[0,5,1,4] },
+        { name: '80s Synth Pop',      mood: 'upbeat, shimmering',   pref:'major', nums:[0,3,4,4] },
+        { name: 'Acoustic hit',       mood: 'warm, organic',        pref:'major', nums:[0,4,1,3] },
+        { name: 'Emotional chorus',   mood: 'heartfelt peak',       pref:'minor', nums:[0,3,6,4] },
+        { name: 'Modern dance pop',   mood: 'groovy, energetic',    pref:'minor', nums:[0,4,3,6] },
+        { name: 'Boyband ballad',     mood: 'dramatic romance',     pref:'major', nums:[0,5,3,4] },
+        { name: 'Chart-topper turn',  mood: 'catchy, modern',       pref:'both',  nums:[0,3,5,4] },
+      ]
+    },
+    {
+      id: 'rock', label: 'Rock', icon: '🎸',
+      progs: [
+        { name: '12-bar blues',       mood: 'raw, classic',         pref:'major', nums:[0,0,0,0,3,3,0,0,4,3,0,4] },
+        { name: 'Power trio',         mood: 'driving, no-nonsense', pref:'major', nums:[0,3,4,0] },
+        { name: 'Minor stomp',        mood: 'aggressive, dark',     pref:'minor', nums:[0,6,3,4] },
+        { name: 'Riff rock',          mood: 'punchy, swagger',      pref:'minor', nums:[0,2,3,0] },
+        { name: 'Classic rock turn',  mood: 'feel-good, timeless',  pref:'major', nums:[0,4,3,0] },
+        { name: 'Grunge drop',        mood: 'heavy, unresolved',    pref:'minor', nums:[0,5,3,6] },
+        { name: 'Arena chorus',       mood: 'massive, fist-pump',   pref:'both',  nums:[0,4,5,3] },
+        { name: 'Punk cadence',       mood: 'fast, rebellious',     pref:'major', nums:[0,3,4,3] },
+        { name: 'Southern rock',      mood: 'gritty, bluesy',       pref:'major', nums:[0,6,3,0] },
+        { name: 'Alternative verse',  mood: 'moody, brooding',      pref:'minor', nums:[0,3,0,4] },
+        { name: 'Psychedelic float',  mood: 'trippy, open',         pref:'both',  nums:[0,1,3,0] },
+        { name: 'Hard rock drive',    mood: 'pounding, raw',        pref:'minor', nums:[0,6,5,4] },
+        { name: 'Stoner riff',        mood: 'fuzzy, heavy',         pref:'minor', nums:[0,2,6,0] },
+        { name: 'Stadium anthem',     mood: 'soaring guitar',       pref:'major', nums:[0,4,1,3] },
+      ]
+    },
+    {
+      id: 'synthwave', label: 'Synthwave', icon: '🌆',
+      progs: [
+        { name: 'Neon drive',         mood: 'cool, nostalgic',      pref:'minor', nums:[0,6,3,4] },
+        { name: 'Retrowave chase',    mood: 'fast, 80s thriller',   pref:'minor', nums:[0,5,6,4] },
+        { name: 'Outrun sunset',      mood: 'melancholic, longing', pref:'minor', nums:[0,3,6,4] },
+        { name: 'Miami Vice float',   mood: 'dreamy, smooth',       pref:'major', nums:[0,5,3,4] },
+        { name: 'Darksynth pulse',    mood: 'industrial, menacing', pref:'minor', nums:[0,1,0,6] },
+        { name: 'Vaporwave loop',     mood: 'hazy, slowed',         pref:'both',  nums:[0,3,5,4] },
+        { name: 'Arcade hero',        mood: 'triumphant retro',     pref:'major', nums:[0,4,5,3] },
+        { name: 'Midnight cruiser',   mood: 'slick, nocturnal',     pref:'minor', nums:[0,2,3,4] },
+        { name: 'Cyberpunk alley',    mood: 'gritty, dystopian',    pref:'minor', nums:[0,1,5,6] },
+        { name: 'Dreamwave breeze',   mood: 'lush, airy',           pref:'major', nums:[0,3,1,4] },
+        { name: 'VHS memory',         mood: 'nostalgic, warm',      pref:'both',  nums:[0,5,3,0] },
+        { name: 'Cassette deck',      mood: 'analog, lo-fi synth',  pref:'minor', nums:[0,6,4,5] },
+        { name: 'Analog sunrise',     mood: 'glowing, optimism',    pref:'major', nums:[0,2,3,4] },
+        { name: 'Grid runner',        mood: 'relentless, pulse',    pref:'minor', nums:[0,3,0,6] },
+      ]
+    },
+    {
+      id: 'folk', label: 'Folk / Ethnic', icon: '🪕',
+      progs: [
+        { name: 'Celtic round',       mood: 'ancient, circular',    pref:'dorian',nums:[0,1,3,1] },
+        { name: 'Appalachian modal',  mood: 'raw, earthen',         pref:'dorian',nums:[0,3,1,0] },
+        { name: 'Flamenco rumba',     mood: 'passionate, fierce',   pref:'phrygian',nums:[0,6,5,6] },
+        { name: 'Americana strum',    mood: 'open, honest',         pref:'major', nums:[0,4,3,0] },
+        { name: 'Minor folk ballad',  mood: 'mournful, storytelling',pref:'minor', nums:[0,6,4,0] },
+        { name: 'Slavic dance',       mood: 'frenetic, celebratory',pref:'minor', nums:[0,2,3,4] },
+        { name: 'Nordic walking song',mood: 'resolute, windswept',  pref:'dorian',nums:[0,1,0,3] },
+        { name: 'Irish reel',         mood: 'lively, spinning',     pref:'major', nums:[0,3,4,0] },
+        { name: 'Andean breeze',      mood: 'pipe-driven, open',    pref:'minor', nums:[0,2,3,5] },
+        { name: 'Gypsy dance',        mood: 'spirited, fiery',      pref:'phrygian',nums:[0,1,6,0] },
+        { name: 'Campfire singalong', mood: 'warm, communal',       pref:'major', nums:[0,4,5,3] },
+        { name: 'Celtic lament',      mood: 'haunting, reflective', pref:'minor', nums:[0,5,3,4] },
+        { name: 'Bluegrass picker',   mood: 'brisk, energetic',     pref:'major', nums:[0,3,0,4] },
+        { name: 'Balkan circle',      mood: 'rhythmic, modal',      pref:'both',  nums:[0,1,3,4] },
+      ]
+    },
+    {
+      id: 'jazz', label: 'Jazz', icon: '🎷',
+      progs: [
+        { name: 'ii–V–I turnaround',  mood: 'smooth, professional', pref:'major', nums:[1,4,0,0] },
+        { name: 'Bird blues',         mood: 'bebop, fast changes',  pref:'major', nums:[0,3,1,4] },
+        { name: 'Modal floating',     mood: 'open, meditative',     pref:'dorian',nums:[0,1,0,1] },
+        { name: 'Autumn leaves',      mood: 'melancholic, standard',pref:'minor', nums:[1,4,0,3] },
+        { name: 'Rhythm changes',     mood: 'swinging, classic',    pref:'major', nums:[0,5,1,4] },
+        { name: 'Bossa groove',       mood: 'lush, Brazilian',      pref:'major', nums:[0,1,4,0] },
+        { name: 'Lydian dream',       mood: 'ethereal, floating',   pref:'lydian',nums:[0,1,3,0] },
+        { name: 'Minor ii-V-i',       mood: 'somber, sophisticated',pref:'minor', nums:[1,4,0,0] },
+        { name: 'Coltrane matrix',    mood: 'complex, shifting',    pref:'major', nums:[0,2,4,1] },
+        { name: 'Hard bop strut',     mood: 'bluesy, driving',     pref:'minor', nums:[0,3,1,4] },
+        { name: 'Cool jazz lounge',   mood: 'relaxed, smoky',       pref:'major', nums:[0,3,1,0] },
+        { name: 'Gypsy swing',        mood: 'up-tempo, acoustic',   pref:'minor', nums:[0,5,1,4] },
+        { name: 'Soul jazz vamp',     mood: 'earthy, gospel-tinged',pref:'major', nums:[0,3,0,3] },
+        { name: 'Ballad turnaround',  mood: 'tender, rich',         pref:'both',  nums:[0,5,1,4] },
+      ]
+    },
+    {
+      id: 'electronic', label: 'Electronic', icon: '🎛️',
+      progs: [
+        { name: 'Four-on-the-floor',  mood: 'hypnotic, club',       pref:'minor', nums:[0,3,5,4] },
+        { name: 'Techno loop',        mood: 'minimal, industrial',  pref:'minor', nums:[0,6,0,5] },
+        { name: 'Deep house mood',    mood: 'warm, late night',     pref:'minor', nums:[0,5,3,6] },
+        { name: 'Trance euphoria',    mood: 'uplifting, peak-time', pref:'minor', nums:[0,6,3,4] },
+        { name: 'Ambient drift',      mood: 'weightless, open',     pref:'major', nums:[0,2,4,0] },
+        { name: 'Drum & bass tension',mood: 'urgent, kinetic',      pref:'minor', nums:[0,1,5,4] },
+        { name: 'Future bass float',  mood: 'emotional, lush',      pref:'major', nums:[0,4,5,3] },
+        { name: 'Progressive house',  mood: 'building, hypnotic',   pref:'minor', nums:[0,3,4,6] },
+        { name: 'Synthwave pulse',    mood: 'driving bassline',     pref:'minor', nums:[0,6,3,5] },
+        { name: 'Dubstep swell',      mood: 'dark tension',         pref:'minor', nums:[0,1,0,3] },
+        { name: 'Chillstep breeze',   mood: 'relaxed, spacious',    pref:'major', nums:[0,2,3,4] },
+        { name: 'Electro clash',      mood: 'gritty, punchy',       pref:'minor', nums:[0,5,0,4] },
+        { name: 'Melodic techno',     mood: 'deep, atmospheric',    pref:'minor', nums:[0,2,5,4] },
+        { name: 'EDM drop',           mood: 'massive energy',       pref:'both',  nums:[0,4,5,3] },
+      ]
+    },
+    {
+      id: 'rnb', label: 'R&B / Soul', icon: '🎵',
+      progs: [
+        { name: 'Neo-soul shimmer',   mood: 'rich, sensual',        pref:'major', nums:[0,1,4,3] },
+        { name: 'Classic soul',       mood: 'warm, gospel roots',   pref:'major', nums:[0,3,4,0] },
+        { name: 'Trap soul loop',     mood: 'moody, contemporary',  pref:'minor', nums:[0,5,3,4] },
+        { name: 'Slow jam drift',     mood: 'intimate, late night', pref:'minor', nums:[0,6,3,5] },
+        { name: 'Funk pocket',        mood: 'groove-locked, joyful',pref:'major', nums:[0,3,0,4] },
+        { name: 'Quiet storm',        mood: 'smooth, romantic',     pref:'both',  nums:[0,4,3,5] },
+        { name: 'Motown bounce',      mood: 'upbeat, classic',      pref:'major', nums:[0,5,1,4] },
+        { name: 'Modern R&B vibe',    mood: 'slick, atmospheric',   pref:'minor', nums:[0,3,6,4] },
+        { name: 'Lo-fi soul',         mood: 'cozy, dusty',          pref:'both',  nums:[0,1,3,4] },
+        { name: 'Gospel turnaround',  mood: 'uplifting, powerful',  pref:'major', nums:[0,3,1,4] },
+        { name: 'Sultry groove',      mood: 'deep, expressive',     pref:'minor', nums:[0,4,3,4] },
+        { name: 'Retro R&B ballad',   mood: 'emotional, sweet',     pref:'major', nums:[0,2,3,4] },
+        { name: 'Contemporary trap',  mood: 'dark, minimal',        pref:'minor', nums:[0,1,0,5] },
+        { name: 'Smooth jam',         mood: 'velvet sound',         pref:'both',  nums:[0,3,4,5] },
+      ]
+    },
+    {
+      id: 'metal', label: 'Metal', icon: '🤘',
+      progs: [
+        { name: 'Doom power',         mood: 'crushing, slow-burn',  pref:'minor', nums:[0,6,5,6] },
+        { name: 'Thrash riff',        mood: 'chaotic, fast',        pref:'minor', nums:[0,1,2,0] },
+        { name: 'Death march',        mood: 'relentless, brutal',   pref:'minor', nums:[0,6,0,4] },
+        { name: 'Blackened tremolo',  mood: 'cold, atmospheric',    pref:'phrygian',nums:[0,1,3,1] },
+        { name: 'Nu-metal groove',    mood: 'aggressive, hooky',    pref:'minor', nums:[0,4,0,6] },
+        { name: 'Melodic death drive',mood: 'emotional, heavy',     pref:'minor', nums:[0,6,3,4] },
+        { name: 'Prog metal djent',   mood: 'polyrhythmic, tight',  pref:'minor', nums:[0,1,3,6] },
+        { name: 'Symphonic power',    mood: 'epic, triumphant',     pref:'minor', nums:[0,5,6,4] },
+        { name: 'Sludge heavy',       mood: 'murky, sluggish',      pref:'minor', nums:[0,1,0,1] },
+        { name: 'Metalcore breakdown',mood: 'moshable, brutal',     pref:'minor', nums:[0,6,1,0] },
+        { name: 'Neoclassical run',   mood: 'fast, virtuosic',      pref:'minor', nums:[0,4,3,4] },
+        { name: 'Industrial stomper', mood: 'mechanical, harsh',    pref:'minor', nums:[0,1,0,6] },
+        { name: 'Power metal gallop', mood: 'heroic, fast',         pref:'minor', nums:[0,5,3,4] },
+        { name: 'Gothic doom',        mood: 'melancholic, dark',    pref:'minor', nums:[0,3,6,5] },
+      ]
+    },
+    {
+      id: 'ambient', label: 'Ambient', icon: '🌊',
+      progs: [
+        { name: 'Infinite pad',       mood: 'still, meditative',    pref:'major', nums:[0,2,4,2] },
+        { name: 'Eno drift',          mood: 'slow-moving, gentle',  pref:'major', nums:[0,4,3,0] },
+        { name: 'Dark texture',       mood: 'unsettling, sparse',   pref:'minor', nums:[0,1,3,5] },
+        { name: 'Tape loop',          mood: 'worn, nostalgic',      pref:'both',  nums:[0,3,0,5] },
+        { name: 'Harmonic shimmer',   mood: 'transcendent, open',   pref:'lydian',nums:[0,1,0,1] },
+        { name: 'Field recording',    mood: 'organic, evolving',    pref:'dorian',nums:[0,3,1,0] },
+        { name: 'Space drone',        mood: 'endless, deep',        pref:'minor', nums:[0,4,0,3] },
+        { name: 'Glacier melt',       mood: 'cold, serene',         pref:'both',  nums:[0,2,3,0] },
+        { name: 'Subtle warmth',      mood: 'cozy, soft',           pref:'major', nums:[0,3,1,4] },
+        { name: 'Cosmic twilight',    mood: 'mystical, vast',       pref:'minor', nums:[0,5,3,0] },
+        { name: 'Sleep sequence',     mood: 'peaceful, dreamlike',  pref:'major', nums:[0,4,0,4] },
+        { name: 'Isolation ward',     mood: 'stark, solitary',      pref:'minor', nums:[0,1,0,1] },
+        { name: 'Dawn horizon',       mood: 'hopeful, expansive',   pref:'major', nums:[0,1,4,0] },
+        { name: 'Nebula pulse',       mood: 'glowing, slow',        pref:'both',  nums:[0,3,5,0] },
+      ]
+    },
+  ];
+
+  const MINOR_SCALES = ['Natural minor','Dorian','Phrygian','Locrian','Harmonic minor','Melodic minor','Pentatonic minor','Blues'];
+  const DORIAN_SCALES = ['Dorian'];
+  const PHRYGIAN_SCALES = ['Phrygian'];
+  const LYDIAN_SCALES = ['Lydian'];
+
+  let currentScaleNoteIdxs = [];
+  let currentChordTypes    = [];
+  let currentGenre         = 'cinematic';
+  let instrument = null, audioCtx = null;
+  let playTimers = [];
+
+  function noteIdx(name) { return ALL_NOTES.indexOf(name.split('/')[0]); }
+  function getScaleNotes(ri, steps) { return steps.map(s=>(ri+s)%12); }
+  function getChordNotes(ri, q)     { return (CHORD_INTERVALS[q]||[0,4,7]).map(i=>(ri+i)%12); }
+  function midiNote(ni, oct)        { return 12 + oct*12 + ni; }
+
+  async function initAudio() {
+    if (instrument) return;
+    const dot  = document.getElementById('status-dot');
+    const text = document.getElementById('status-text');
+    dot.className = 'status-dot loading';
+    text.textContent = 'Loading piano samples…';
+    try {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      instrument = await Soundfont.instrument(audioCtx, 'acoustic_grand_piano', {soundfont:'MusyngKite',format:'mp3'});
+      document.getElementById('status-bar').style.display = 'none';
+    } catch(e) {
+      dot.style.background = '#E07060';
+      text.textContent = 'Audio unavailable. Try opening in Chrome or Firefox.';
+    }
+  }
+
+  function resumeCtx() { if (audioCtx?.state==='suspended') audioCtx.resume(); }
+
+  function stopAll() {
+    playTimers.forEach(clearTimeout); playTimers = [];
+    document.querySelectorAll('.chord-card.playing,.prog-card.playing').forEach(el=>el.classList.remove('playing'));
+    document.querySelectorAll('.key-btn.playing').forEach(el=>el.classList.remove('playing'));
+  }
+
+  function flashPianoKeys(noteIdxs, duration) {
+    document.querySelectorAll('.key-btn').forEach(k=>k.classList.remove('playing'));
+    noteIdxs.forEach(ni => {
+      const isBlack = BLACK_KEYS.includes(ni);
+      const note = NOTE_DISPLAY[ni].split('/')[0];
+      document.querySelectorAll(isBlack?'.bk':'.wk').forEach(el => {
+        if (el.textContent.trim()===note) el.classList.add('playing');
+      });
+    });
+    playTimers.push(setTimeout(()=>{
+      document.querySelectorAll('.key-btn.playing').forEach(k=>k.classList.remove('playing'));
+      renderPianoColors();
+    }, duration));
+  }
+
+  function renderPianoColors() {
+    const ri = noteIdx(document.getElementById('root').value);
+    document.querySelectorAll('.wk,.bk').forEach(el=>el.classList.remove('active','root','playing'));
+    const whites=[0,2,4,5,7,9,11];
+    const wks = [...document.querySelectorAll('.wk')];
+    whites.forEach((wi,i)=>{
+      const inScale=currentScaleNoteIdxs.includes(wi), isRoot=wi===ri;
+      if(wks[i]) wks[i].className='key-btn wk'+(isRoot?' root':inScale?' active':'');
+      const nb=wi+1;
+      if(BLACK_KEYS.includes(nb)){
+        document.querySelectorAll('.bk').forEach(b=>{
+          const t=b.textContent.trim();
+          if(t===ALL_NOTES[nb]||t===NOTE_DISPLAY[nb].split('/')[0])
+            b.className='key-btn bk'+(nb===ri?' root':currentScaleNoteIdxs.includes(nb)?' active':'');
+        });
+      }
+    });
+  }
+
+  async function playChord(cardEl, ni, q) {
+    await initAudio(); resumeCtx(); stopAll();
+    cardEl.classList.add('playing');
+    const notes = getChordNotes(ni, q);
+    flashPianoKeys(notes, 1500);
+    const now = audioCtx.currentTime;
+    notes.forEach((n,i)=>instrument.play(midiNote(n,4), now+i*0.045, {duration:1.2}));
+    playTimers.push(setTimeout(()=>cardEl.classList.remove('playing'), 1500));
+  }
+
+  async function playProgression(cardEl, nums) {
+    await initAudio(); resumeCtx(); stopAll();
+    cardEl.classList.add('playing');
+    const dur = 900;
+    nums.forEach((n,step)=>{
+      const idx   = n % currentScaleNoteIdxs.length;
+      const ni    = currentScaleNoteIdxs[idx];
+      const q     = currentChordTypes[idx] || 'maj';
+      const notes = getChordNotes(ni, q);
+      playTimers.push(setTimeout(()=>{
+        document.querySelectorAll('.chord-card').forEach((c,ci)=>c.classList.toggle('playing',ci===idx));
+        flashPianoKeys(notes, dur-60);
+        const now = audioCtx.currentTime;
+        notes.forEach((note,i)=>instrument.play(midiNote(note,4), now+i*0.05, {duration:(dur-80)/1000}));
+      }, step*dur));
+    });
+    playTimers.push(setTimeout(()=>{
+      cardEl.classList.remove('playing');
+      document.querySelectorAll('.chord-card.playing,.key-btn.playing').forEach(c=>c.classList.remove('playing'));
+    }, nums.length*dur+300));
+  }
+
+  function getScaleAffinity(modeName) {
+    if (DORIAN_SCALES.includes(modeName))   return 'dorian';
+    if (PHRYGIAN_SCALES.includes(modeName)) return 'phrygian';
+    if (LYDIAN_SCALES.includes(modeName))   return 'lydian';
+    if (MINOR_SCALES.includes(modeName))    return 'minor';
+    return 'major';
+  }
+
+  function filterProgs(progs, affinity) {
+    return progs.filter(p => {
+      if (p.pref === 'both') return true;
+      if (p.pref === affinity) return true;
+      if (affinity === 'dorian'   && p.pref === 'minor') return true;
+      if (affinity === 'phrygian' && p.pref === 'minor') return true;
+      if (affinity === 'lydian'   && p.pref === 'major') return true;
+      return false;
+    });
+  }
+
+  function renderGenreTabs() {
+    const el = document.getElementById('genre-tabs');
+    el.innerHTML = '';
+    GENRES.forEach(g => {
+      const tab = document.createElement('div');
+      tab.className = 'genre-btn' + (g.id===currentGenre?' active':'');
+      tab.innerHTML = g.label;
+      tab.addEventListener('click', ()=>{
+        currentGenre = g.id;
+        document.querySelectorAll('.genre-tabs .genre-btn').forEach(t=>t.classList.remove('active'));
+        tab.classList.add('active');
+        renderProgressions();
+      });
+      el.appendChild(tab);
+    });
+  }
+
+  function renderProgressions() {
+    const el       = document.getElementById('progressions');
+    el.innerHTML   = '';
+    const modeName = SCALES[document.getElementById('mode').value].name;
+    const affinity = getScaleAffinity(modeName);
+    const genre    = GENRES.find(g=>g.id===currentGenre);
+    if (!genre) return;
+    const filtered = filterProgs(genre.progs, affinity);
+    filtered.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'prog-card';
+      const names = p.nums.map(n => {
+        const idx = n % currentScaleNoteIdxs.length;
+        const ni  = currentScaleNoteIdxs[idx];
+        const q   = currentChordTypes[idx] || 'maj';
+        const sfx = {min:'m',dim:'°',aug:'+','7':'7'}[q]||'';
+        return NOTE_DISPLAY[ni].split('/')[0] + sfx;
+      });
+      card.innerHTML = `
+        <div class="prog-header">
+          <div>
+            <div class="prog-title">
+              <i class="ti ti-player-play-filled"></i>
+              ${p.name}
+            </div>
+            <div class="prog-mood">${p.mood}</div>
+          </div>
+          <button class="dl-midi-btn" title="Download MIDI">
+            <i class="ti ti-download"></i> MIDI
+          </button>
+        </div>
+        <div class="prog-chords">${names.join('  —  ')}</div>`;
+      
+      card.addEventListener('click', (e)=>{
+        if (e.target.closest('.dl-midi-btn')) return;
+        playProgression(card, p.nums);
+      });
+
+      card.querySelector('.dl-midi-btn').addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const rootStr = document.getElementById('root').value.split('/')[0];
+        const events = p.nums.map(n => {
+          const idx = n % currentScaleNoteIdxs.length;
+          const ni  = currentScaleNoteIdxs[idx];
+          const q   = currentChordTypes[idx] || 'maj';
+          const midiNotes = getChordNotes(ni, q).map(cn => midiNote(cn, 4));
+          return { notes: midiNotes, durationTicks: 480 };
+        });
+        const midiData = generateMidi(events);
+        downloadMidiFile(`${rootStr}_${p.name.replace(/[^a-zA-Z0-9]/g, '_')}_Progression.mid`, midiData);
+      });
+
+      el.appendChild(card);
+    });
+    if (filtered.length === 0) {
+      el.innerHTML = `<div style="color:var(--grey);font-size:13px;padding:12px 0">No progressions for this scale/genre combo. Try a different scale.</div>`;
+    }
+  }
+
+  function renderPiano(scaleIdxs, ri) {
+    const piano = document.getElementById('piano');
+    piano.innerHTML = '';
+    const whites=[0,2,4,5,7,9,11];
+    whites.forEach(wi=>{
+      const inScale=scaleIdxs.includes(wi), isRoot=wi===ri;
+      const el=document.createElement('div');
+      el.className='key-btn wk'+(isRoot?' root':inScale?' active':'');
+      el.textContent=NOTE_DISPLAY[wi].split('/')[0];
+      piano.appendChild(el);
+      const nb=wi+1;
+      if(BLACK_KEYS.includes(nb)){
+        const bActive=scaleIdxs.includes(nb), bRoot=nb===ri;
+        const bel=document.createElement('div');
+        bel.className='key-btn bk'+(bRoot?' root':bActive?' active':'');
+        bel.textContent=bActive?NOTE_DISPLAY[nb].split('/')[0]:'';
+        piano.appendChild(bel);
+      }
+    });
+  }
+
+  function renderScaleNotes(idxs, ri) {
+    document.getElementById('scale-notes').innerHTML =
+      idxs.map(i=>`<span class="note-pill${i===ri?' root-pill':''}">${NOTE_DISPLAY[i]}</span>`).join('');
+  }
+
+  function renderChords(scaleIdxs, chordTypes) {
+    const grid = document.getElementById('chords-grid');
+    grid.innerHTML = '';
+    const count = Math.min(scaleIdxs.length, 7);
+    for(let i=0;i<count;i++){
+      const ni=scaleIdxs[i], q=chordTypes[i]||'maj';
+      const isMinor=['min','dim'].includes(q);
+      const rom=isMinor?ROMAN_LOWER[i]:ROMAN[i];
+      const qLabel={maj:'major',min:'minor',dim:'dim',aug:'augmented','7':'dominant 7'}[q]||q;
+      const qBadgeLabel={dim:'diminished'}[q]||qLabel;
+      const qClass={maj:'q-maj',min:'q-min',dim:'q-dim',aug:'q-aug','7':'q-7'}[q]||'q-maj';
+      const chordNameStr = NOTE_DISPLAY[ni].split('/')[0];
+      const card=document.createElement('div');
+      card.className='chord-card';
+      card.innerHTML=`
+        <div class="chord-card-top">
+          <div class="chord-num">${rom}</div>
+          <button class="dl-midi-btn dl-midi-icon-only" title="Download Chord MIDI">
+            <i class="ti ti-download"></i>
+          </button>
+        </div>
+        <div class="chord-name">${chordNameStr}</div>
+        <div class="chord-type">${NOTE_DISPLAY[ni]} ${qLabel}</div>
+        <span class="chord-quality ${qClass}">
+          <i class="ti ti-player-play-filled"></i>
+          ${qBadgeLabel}
+        </span>`;
+      
+      card.addEventListener('click', (e)=>{
+        if (e.target.closest('.dl-midi-btn')) return;
+        document.getElementById('chord-notes').innerHTML=getChordNotes(ni,q)
+          .map((n,pi)=>`<span class="note-pill chord-pill">${NOTE_DISPLAY[n]} <small style="opacity:.6">${['root','3rd','5th','7th'][pi]||''}</small></span>`).join('');
+        playChord(card,ni,q);
+      });
+
+      card.querySelector('.dl-midi-btn').addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const midiNotes = getChordNotes(ni, q).map(cn => midiNote(cn, 4));
+        const midiData = generateMidi([{ notes: midiNotes, durationTicks: 1920 }]);
+        downloadMidiFile(`${chordNameStr}_${qLabel}_Chord.mid`, midiData);
+      });
+
+      grid.appendChild(card);
+    }
+  }
+
+  function renderCompat(ri, modeKey) {
+    const el=document.getElementById('compat');
+    el.innerHTML='';
+    const isMinor=['minor','dorian','phrygian','locrian','harmonic_minor','melodic_minor','pentatonic_minor','blues'].includes(modeKey);
+    const list=isMinor?[
+      {d:3,m:'major',     rel:'Relative major'},
+      {d:5,m:'minor',     rel:'Subdominant minor'},
+      {d:7,m:'minor',     rel:'Dominant minor'},
+      {d:0,m:'dorian',    rel:'Parallel Dorian'},
+      {d:0,m:'major',     rel:'Parallel major'},
+    ]:[
+      {d:5,m:'major',     rel:'Subdominant (IV)'},
+      {d:7,m:'major',     rel:'Dominant (V)'},
+      {d:9,m:'minor',     rel:'Relative minor'},
+      {d:2,m:'dorian',    rel:'Supertonic Dorian'},
+      {d:7,m:'mixolydian',rel:'Mixolydian V'},
+    ];
+    list.forEach(c=>{
+      const ni=(ri+c.d)%12;
+      const pill=document.createElement('div');
+      pill.className='compat-pill';
+      pill.innerHTML=`${NOTE_DISPLAY[ni]} ${SCALES[c.m].name}<span class="rel">${c.rel}</span>`;
+      el.appendChild(pill);
+    });
+  }
+
+  function update() {
+    const ri      = noteIdx(document.getElementById('root').value);
+    const modeKey = document.getElementById('mode').value;
+    const scale   = SCALES[modeKey];
+    currentScaleNoteIdxs = getScaleNotes(ri, scale.steps);
+    currentChordTypes    = scale.chords;
+    document.getElementById('chord-notes').innerHTML='';
+    renderPiano(currentScaleNoteIdxs, ri);
+    renderScaleNotes(currentScaleNoteIdxs, ri);
+    renderChords(currentScaleNoteIdxs, scale.chords);
+    renderProgressions();
+    renderCompat(ri, modeKey);
+  }
+
+  document.getElementById('root').addEventListener('change',()=>{stopAll();update();});
+  document.getElementById('mode').addEventListener('change',()=>{stopAll();update();});
+
+  renderGenreTabs();
+  initAudio();
+  update();
+</script>
+</body>
+</html>

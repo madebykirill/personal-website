@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aspect Ratio Calculator - Kirill Zeynalov</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+<link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Kirill Zeynalov" />
+<link rel="manifest" href="/favicon/site.webmanifest" />
+<meta name="description" content="Calculate and scale image and video aspect ratios accurately. Includes presets for 1:1, 3:2, 4:3, 5:4, 16:9, 21:9, and custom ratios.">
+</head>
+<body>
+<div class="page-wrap">
+
+<header>
+  <div class="header-inner">
+    <nav class="nav-left">
+      <a href="/audio/">Audio</a>
+      <a href="/video/">Video</a>
+      <a href="/visuals/">Visuals</a>
+    </nav>
+    <div class="logo-wrap">
+      <a href="/">
+        <img src="https://cdn.jsdelivr.net/gh/madebykirill/website-assets@main/00-misc/KZ%20-%20Logotype%20-%20Large.png" alt="Kirill Zeynalov" onerror="this.style.display='none'">
+      </a>
+    </div>
+    <nav class="nav-right">
+      <a href="/blog/">Blog</a>
+      <a href="/resources/">Resources</a>
+      <a href="/about/">About</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-backdrop" id="menuBackdrop"></div>
+  <div class="mobile-menu-panel">
+    <nav class="mobile-menu-links">
+      <a href="/audio/"><span class="link-dot"></span>Audio</a>
+      <a href="/video/"><span class="link-dot"></span>Video</a>
+      <a href="/visuals/"><span class="link-dot"></span>Visuals</a>
+      <a href="/blog/"><span class="link-dot"></span>Blog</a>
+      <a href="/resources/" class="active"><span class="link-dot"></span>Resources</a>
+      <a href="/about/"><span class="link-dot"></span>About</a>
+    </nav>
+  </div>
+</div>
+
+<section class="hero">
+  <img class="hero-bg" src="https://images.pexels.com/photos/5477782/pexels-photo-5477782.jpeg?_gl=1*z34s4j*_ga*MTcwMDIxNjg0NS4xNzQwOTYwMDg0*_ga_8JE65Q40S6*czE3ODQ3MzI5ODgkbzQ2JGcxJHQxNzg0NzMzMDQzJGo1JGwwJGgw" alt="Aspect Ratio Calculator">
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <div class="hero-rule"></div>
+    <span class="hero-label">Aspect Ratio Calculator</span>
+  </div>
+</section>
+
+<main>
+  <p class="intro-text">
+    Calculate proportional dimensions for video, photography, and graphic design. Choose a standard preset or select Custom to enter unconstrained dimensions.
+  </p>
+
+  <div class="tool-card">
+    
+    <!-- Visual Preview -->
+    <div class="aspect-preview-wrap">
+      <div id="preview-box" class="aspect-preview-box">1080 × 1080</div>
+    </div>
+
+    <!-- Ratio Presets -->
+    <div class="ctrl">
+      <label>Aspect Ratio Presets</label>
+      <div class="ratio-grid" id="preset-grid">
+        <button class="genre-btn active" data-w="1" data-h="1">1:1</button>
+        <button class="genre-btn" data-w="3" data-h="2">3:2</button>
+        <button class="genre-btn" data-w="4" data-h="3">4:3</button>
+        <button class="genre-btn" data-w="5" data-h="4">5:4</button>
+        <button class="genre-btn" data-w="16" data-h="9">16:9</button>
+        <button class="genre-btn" data-w="21" data-h="9">21:9</button>
+        <button class="genre-btn" id="btn-custom" data-custom="true">Custom</button>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Dimension Inputs -->
+    <div class="row">
+      <div class="col">
+        <label class="field-label">Width (px)</label>
+        <div class="field-row">
+          <input type="number" id="val-width" class="field" value="1080" min="1">
+          <button class="copy-btn" id="copy-w">Copy</button>
+        </div>
+      </div>
+      <div class="col">
+        <label class="field-label">Height (px)</label>
+        <div class="field-row">
+          <input type="number" id="val-height" class="field" value="1080" min="1">
+          <button class="copy-btn" id="copy-h">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions" style="margin-top: 1.25rem;">
+      <button class="btn" id="swap-btn"><i class="ti ti-arrows-exchange"></i> Swap Dimensions</button>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-social">
+    <a href="https://www.youtube.com/@kirillzeynalov" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://www.instagram.com/madebykirill" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@madebykirill" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://vk.com/madeby.kirill" target="_blank" rel="noopener">VK</a>
+  </div>
+  <div class="footer-cta">
+    <h3>Let's Create Something Together</h3>
+    <a href="mailto:hello.madebykirill@gmail.com">hello.madebykirill@gmail.com</a>
+  </div>
+  <div class="footer-copy" id="footer-copy"></div>
+</footer>
+
+</div>
+
+<script>
+  (function() {
+    document.getElementById('footer-copy').innerHTML = '\u00A9 ' + new Date().getFullYear() + ' | All rights reserved<br>Kirill Zeynalov | Digital Content Creation';
+  })();
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuBackdrop = document.getElementById('menuBackdrop');
+  function openMenu() { hamburger.classList.add('open'); mobileMenu.classList.add('open'); }
+  function closeMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+  hamburger.addEventListener('click', () => mobileMenu.classList.contains('open') ? closeMenu() : openMenu());
+  menuBackdrop.addEventListener('click', closeMenu);
+
+  /* Calculator Logic */
+  let ratioW = 1;
+  let ratioH = 1;
+  let isCustomMode = false;
+  let lastEditedField = 'width';
+
+  const inputW = document.getElementById('val-width');
+  const inputH = document.getElementById('val-height');
+  const previewBox = document.getElementById('preview-box');
+
+  function gcd(a, b) {
+    return b === 0 ? a : gcd(b, a % b);
+  }
+
+  function getSimplifiedRatioStr(w, h) {
+    if (!w || !h) return '';
+    const divisor = gcd(w, h);
+    const simpW = w / divisor;
+    const simpH = h / divisor;
+    
+    if (simpW > 50 || simpH > 50) {
+      const dec = (w / h).toFixed(2);
+      return ` (${dec}:1)`;
+    }
+    return ` (${simpW}:${simpH})`;
+  }
+
+  function updateFromWidth() {
+    const w = parseFloat(inputW.value) || 0;
+    let h = parseFloat(inputH.value) || 0;
+
+    if (!isCustomMode && ratioW > 0) {
+      h = Math.round((w * ratioH) / ratioW);
+      inputH.value = h;
+    }
+    updatePreview(w, h);
+  }
+
+  function updateFromHeight() {
+    const h = parseFloat(inputH.value) || 0;
+    let w = parseFloat(inputW.value) || 0;
+
+    if (!isCustomMode && ratioH > 0) {
+      w = Math.round((h * ratioW) / ratioH);
+      inputW.value = w;
+    }
+    updatePreview(w, h);
+  }
+
+  function updatePreview(w, h) {
+    const ratioTag = isCustomMode ? getSimplifiedRatioStr(w, h) : '';
+    previewBox.textContent = `${w} × ${h}${ratioTag}`;
+    
+    const maxDim = 180;
+    let boxW, boxH;
+
+    if (w >= h) {
+      boxW = maxDim;
+      boxH = Math.max(25, Math.round((maxDim * (h || 1)) / (w || 1)));
+    } else {
+      boxH = maxDim;
+      boxW = Math.max(25, Math.round((maxDim * (w || 1)) / (h || 1)));
+    }
+
+    previewBox.style.width = `${boxW}px`;
+    previewBox.style.height = `${boxH}px`;
+  }
+
+  // Preset Selection - respects the last edited field
+  document.getElementById('preset-grid').addEventListener('click', (e) => {
+    const btn = e.target.closest('.genre-btn');
+    if (!btn) return;
+
+    document.querySelectorAll('#preset-grid .genre-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    if (btn.dataset.custom) {
+      isCustomMode = true;
+      updatePreview(parseFloat(inputW.value) || 0, parseFloat(inputH.value) || 0);
+    } else {
+      isCustomMode = false;
+      ratioW = parseFloat(btn.dataset.w);
+      ratioH = parseFloat(btn.dataset.h);
+
+      if (lastEditedField === 'height') {
+        updateFromHeight();
+      } else {
+        updateFromWidth();
+      }
+    }
+  });
+
+  // User input handlers
+  inputW.addEventListener('input', () => {
+    lastEditedField = 'width';
+    updateFromWidth();
+  });
+
+  inputH.addEventListener('input', () => {
+    lastEditedField = 'height';
+    updateFromHeight();
+  });
+
+  // Swap Dimensions
+  document.getElementById('swap-btn').addEventListener('click', () => {
+    const tempVal = inputW.value;
+    inputW.value = inputH.value;
+    inputH.value = tempVal;
+    
+    if (!isCustomMode) {
+      const tempR = ratioW;
+      ratioW = ratioH;
+      ratioH = tempR;
+    }
+
+    if (lastEditedField === 'height') {
+      updateFromHeight();
+    } else {
+      updateFromWidth();
+    }
+  });
+
+  // Copy buttons
+  function setupCopy(btnId, inputEl) {
+    document.getElementById(btnId).addEventListener('click', () => {
+      navigator.clipboard.writeText(inputEl.value);
+      const btn = document.getElementById(btnId);
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 1500);
+    });
+  }
+  setupCopy('copy-w', inputW);
+  setupCopy('copy-h', inputH);
+
+  updateFromWidth();
+</script>
+</body>
+</html>
